@@ -1,18 +1,19 @@
-const initialPageAnimation = () => {
-  let tl = gsap.timeline();
-  tl.fromTo(
-    ".logo",
-    {
-      x: -200,
-      opacity: 0
-    },
-    {
-      x: 0,
-      opacity: 1,
-      delay: 0.5,
-      duration: 1.3
-    }
-  )
+const headerAnimation = () => {
+  let timeline = gsap.timeline();
+  timeline
+    .fromTo(
+      ".logo",
+      {
+        x: -200,
+        opacity: 0
+      },
+      {
+        x: 0,
+        opacity: 1,
+        delay: 0.5,
+        duration: 1.3
+      }
+    )
     .fromTo(
       ".menu",
       {
@@ -26,7 +27,12 @@ const initialPageAnimation = () => {
         duration: 1.3
       },
       ">-1.8"
-    )
+    );
+};
+
+const homeAnimation = () => {
+  let timeline = gsap.timeline();
+  timeline
     .fromTo(
       ".info-section h1",
       {
@@ -52,7 +58,6 @@ const initialPageAnimation = () => {
         duration: 1.4,
         ease: "power2.inOut"
       },
-      // ">-1"
       ">-0.5"
     )
     .fromTo(
@@ -160,6 +165,24 @@ const initialPageAnimation = () => {
     );
 };
 
+const aboutAnimation = () => {
+  let timeline = gsap.timeline();
+  timeline.fromTo(
+    ".info-section h1",
+    {
+      x: 0,
+      y: 100,
+      opacity: 0
+    },
+    {
+      x: 0,
+      y: 0,
+      opacity: 1,
+      duration: 1.3
+    }
+  );
+};
+
 const delay = (n) => {
   return new Promise((done) => {
     setTimeout(() => {
@@ -227,8 +250,6 @@ const galleryEnter = () => {
     );
 };
 
-galleryEnter();
-
 barba.init({
   sync: true,
   transitions: [
@@ -243,11 +264,11 @@ barba.init({
       },
       async enter(data) {
         loadingEnter();
-        initialPageAnimation();
+        headerAnimation();
         console.log("Entering Page Animation");
       },
       async once(data) {
-        initialPageAnimation();
+        headerAnimation();
       }
     },
     {
@@ -273,16 +294,18 @@ barba.init({
     }
   ],
   views: [
-    // {
-    //   namespace: "home",
-    //   afterEnter(data) {
-    //     loadingEnter();
-    //   }
-    // },
+    {
+      namespace: "home",
+      afterEnter(data) {
+        loadingEnter();
+        homeAnimation();
+      }
+    },
     {
       namespace: "about",
       afterEnter(data) {
         loadingEnter();
+        aboutAnimation();
       }
     },
     {
