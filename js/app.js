@@ -1,3 +1,5 @@
+// Page Transition Animations
+
 const headerAnimation = () => {
   let timeline = gsap.timeline();
   timeline
@@ -317,3 +319,41 @@ barba.init({
     }
   ]
 });
+
+// Scroll Animation
+
+// You could have done this like the following commented code, but we want to be able to debug it, so we did it like the code below this, instead.
+// const tlServicesScroll = gsap.timeline();
+const tlServicesScroll = new gsap.timeline({
+  onUpdate: debugPercentage
+});
+function debugPercentage() {
+  console.log(tlServicesScroll.progress());
+}
+tlServicesScroll.fromTo(
+  "#main-services",
+  {
+    x: "100%"
+  },
+  {
+    x: 0
+  }
+);
+const serviceElement = document.querySelector("#main-services");
+
+let homeController = new ScrollMagic.Controller();
+
+let serviceScene = new ScrollMagic.Scene({
+  triggerElement: "#main-services",
+  triggerHook: 1,
+  // offset: 100,
+  // offset: 450,
+  // reverse: false,
+  // This is not necessary because reverse: true is the default value.
+  // reverse: true,
+  // duration: 1000
+  duration: serviceElement.offsetHeight
+})
+  .setTween(tlServicesScroll)
+  .addIndicators()
+  .addTo(homeController);
