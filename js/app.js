@@ -140,6 +140,12 @@ const homeAnimation = () => {
         duration: 1.3
       },
       "h1Show+=1"
+    ).fromTo("#main-services", {
+        display: "none"
+      }, {
+        display: "block",
+      },
+      ">-1.5"
     );
 };
 
@@ -262,7 +268,7 @@ barba.init({
       },
       async enter(data) {
         loadingEnter();
-        // delay(2000);
+        headerAnimation();
         homeAnimation();
       }
     },
@@ -282,9 +288,8 @@ barba.init({
         done();
       },
       async enter(data) {
-        // await delay(2000);
         loadingEnter();
-        // await delay(2000);
+        headerAnimation();
         galleryEnter();
         // console.log("Entering Page Animation");
       }
@@ -294,7 +299,6 @@ barba.init({
       namespace: "home",
       afterEnter(data) {
         loadingEnter();
-        delay(2000);
         homeAnimation();
       }
     },
@@ -302,7 +306,6 @@ barba.init({
       namespace: "about",
       afterEnter(data) {
         loadingEnter();
-        delay(2000);
         aboutAnimation();
       }
     },
@@ -310,12 +313,15 @@ barba.init({
       namespace: "gallery",
       afterEnter(data) {
         loadingEnter();
-        delay(2000);
         galleryEnter();
       }
     }
   ]
 });
+
+// barba.hooks.enter((data) => {
+//   headerAnimation();
+// });
 
 // Scroll Animation
 
