@@ -232,12 +232,9 @@ const loadingEnter = () => {
     .fromTo(
       ".outer-container",
       {
-        // height: "50vh",
-        // margin: "auto"
         scale: 0.5
       },
       {
-        // height: "100vh"
         scale: 1
       }
     );
@@ -277,13 +274,7 @@ const galleryEnter = () => {
 
 // let homeController = new ScrollMagic.Controller();
 
-// setTimeout(() => {
-//   const serviceElement = document.querySelector("#main-services");
-// }, 5000);
-
-// console.log(serviceElement.offsetHeight);
-
-const scrollAnimationOn = () => {
+const scrollAnimationOn = (homeController) => {
   // Scroll Animation
 
   // You could have done this like the following commented code, but we want to be able to debug it, so we did it like the code below this, instead.
@@ -323,7 +314,7 @@ const scrollAnimationOn = () => {
 
   const serviceElement = document.querySelector("#main-services");
 
-  let homeController = new ScrollMagic.Controller();
+  // let homeController = new ScrollMagic.Controller();
 
   let serviceScene = new ScrollMagic.Scene({
     triggerElement: "#main-services",
@@ -334,8 +325,8 @@ const scrollAnimationOn = () => {
     // This is not necessary because reverse: true is the default value.
     // reverse: true,
     // duration: 1000
-    duration: serviceElement.offsetHeight
-    // duration: 500
+    // duration: serviceElement.offsetHeight
+    duration: 500
   })
     .setTween(tlServicesScroll)
     // .addIndicators()
@@ -345,16 +336,15 @@ const scrollAnimationOn = () => {
     triggerElement: "#main-services",
     triggerHook: 1,
     offset: 500,
-    duration: serviceElement.offsetHeight - 500
-    // duration: 500
+    // duration: serviceElement.offsetHeight - 500
+    duration: 700
   })
     .setTween(tlServicesInnerElementsScroll)
     // .addIndicators()
     .addTo(homeController);
 };
 
-const scrollAnimationOff = () => {
-  let homeController = new ScrollMagic.Controller();
+const scrollAnimationOff = (homeController) => {
   homeController.destroy(true);
   homeController = null;
 };
@@ -378,33 +368,33 @@ barba.init({
       },
       async once(data) {
         headerAnimation();
-        setTimeout(scrollAnimationOn, 10);
         // let homeController = new ScrollMagic.Controller();
       }
     },
-    {
-      name: "home-transition",
-      from: {
-        namespace: ["about", "gallery"]
-      },
-      to: {
-        namespace: ["home"]
-      },
-      async leave(data) {
-        const done = this.async();
-        loadingLeave();
-        setTimeout(scrollAnimationOff, 10);
-        await delay(1500);
-        done();
-      },
-      async enter(data) {
-        loadingEnter();
-        headerAnimation();
-        homeAnimation();
-        // delay(5000);
-        setTimeout(scrollAnimationOn, 10);
-      }
-    },
+    // {
+    //   name: "home-transition",
+    //   from: {
+    //     namespace: ["about", "gallery"]
+    //   },
+    //   to: {
+    //     namespace: ["home"]
+    //   },
+    //   async leave(data) {
+    //     const done = this.async();
+    //     loadingLeave();
+    //     let homeController = new ScrollMagic.Controller();
+    //     scrollAnimationOff(homeController);
+    //     await delay(1500);
+    //     done();
+    //   },
+    //   async enter(data) {
+    //     loadingEnter();
+    //     headerAnimation();
+    //     homeAnimation();
+    //     let homeController = new ScrollMagic.Controller();
+    //     scrollAnimationOn(homeController);
+    //   }
+    // },
     {
       name: "gallery-transition",
       from: {
@@ -432,24 +422,17 @@ barba.init({
       afterEnter(data) {
         loadingEnter();
         homeAnimation();
-        // let homeController = new ScrollMagic.Controller();
-        // scrollAnimationOn(homeController);
-        // scrollAnimationOn();
-        setTimeout(scrollAnimationOn, 10);
+        let homeController = new ScrollMagic.Controller();
+        scrollAnimationOn(homeController);
       },
 
       beforeLeave(data) {
-        // let homeController = new ScrollMagic.Controller();
-        // scrollAnimationOff(homeController);
-        // scrollAnimationOff();
-        setTimeout(scrollAnimationOff, 10);
+        let homeController = new ScrollMagic.Controller();
+        scrollAnimationOff(homeController);
       }
     },
     {
       namespace: "about",
-      beforeEnter(data) {
-        // scrollAnimationOff();
-      },
       afterEnter(data) {
         loadingEnter();
         aboutAnimation();
@@ -457,9 +440,6 @@ barba.init({
     },
     {
       namespace: "gallery",
-      beforeEnter(data) {
-        // scrollAnimationOff();
-      },
       afterEnter(data) {
         loadingEnter();
         galleryEnter();
@@ -471,68 +451,3 @@ barba.init({
 // barba.hooks.enter((data) => {
 //   headerAnimation();
 // });
-
-// You could have done this like the following commented code, but we want to be able to debug it, so we did it like the code below this, instead.
-// const tlServicesScroll = gsap.timeline();
-
-// const tlServicesScroll = new gsap.timeline({
-//   onUpdate: debugPercentage
-// });
-
-// function debugPercentage() {
-//   console.log(tlServicesScroll.progress());
-// }
-// tlServicesScroll.fromTo(
-//   "#main-services",
-//   {
-//     x: "100%"
-//   },
-//   {
-//     x: 0
-//   }
-// );
-
-// const tlServicesInnerElementsScroll = new gsap.timeline({
-//   onUpdate: debugPercentage
-// });
-// tlServicesInnerElementsScroll.fromTo(
-//   "#main-services .services .service",
-//   {
-//     y: 300,
-//     opacity: 0
-//   },
-//   {
-//     y: 0,
-//     opacity: 1,
-//     stagger: 0.4
-//   }
-// );
-
-// const serviceElement = document.querySelector("#main-services");
-
-// let homeController = new ScrollMagic.Controller();
-
-// let serviceScene = new ScrollMagic.Scene({
-//   triggerElement: "#main-services",
-//   triggerHook: 1,
-//   // offset: 100,
-//   // offset: 450,
-//   // reverse: false,
-//   // This is not necessary because reverse: true is the default value.
-//   // reverse: true,
-//   // duration: 1000
-//   duration: serviceElement.offsetHeight
-// })
-//   .setTween(tlServicesScroll)
-//   .addIndicators()
-//   .addTo(homeController);
-
-// let serviceInnerElementsScene = new ScrollMagic.Scene({
-//   triggerElement: "#main-services",
-//   triggerHook: 1,
-//   offset: 500,
-//   duration: serviceElement.offsetHeight - 500
-// })
-//   .setTween(tlServicesInnerElementsScroll)
-//   .addIndicators()
-//   .addTo(homeController);
