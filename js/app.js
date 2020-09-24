@@ -311,6 +311,9 @@ const scrollAnimationOn = (homeController) => {
       stagger: 0.4
     }
   );
+  // .to("#main-services .services .service .icon-circle.fa-phone", {
+  //   fontSize: "2rem"
+  // });
 
   const serviceElement = document.querySelector("#main-services");
 
@@ -337,7 +340,7 @@ const scrollAnimationOn = (homeController) => {
     triggerHook: 1,
     offset: 500,
     // duration: serviceElement.offsetHeight - 500
-    duration: 700
+    duration: 500
   })
     .setTween(tlServicesInnerElementsScroll)
     // .addIndicators()
@@ -422,13 +425,19 @@ barba.init({
       afterEnter(data) {
         loadingEnter();
         homeAnimation();
-        let homeController = new ScrollMagic.Controller();
-        scrollAnimationOn(homeController);
+        const createScrollEffect = () => {
+          let homeController = new ScrollMagic.Controller();
+          scrollAnimationOn(homeController);
+        };
+        setTimeout(createScrollEffect, 10);
       },
 
       beforeLeave(data) {
-        let homeController = new ScrollMagic.Controller();
-        scrollAnimationOff(homeController);
+        const destroyScrollEffect = () => {
+          let homeController = new ScrollMagic.Controller();
+          scrollAnimationOff(homeController);
+        };
+        setTimeout(destroyScrollEffect, 10);
       }
     },
     {
