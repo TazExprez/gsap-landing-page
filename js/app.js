@@ -164,17 +164,6 @@ const homeAnimation = () => {
         duration: 1.3
       },
       "h1Show+=1"
-    )
-    .fromTo(
-      "#main-services",
-      {
-        display: "none"
-      },
-      {
-        display: "block",
-        ease: "power1.inOut"
-      },
-      ">-3.5"
     );
 };
 
@@ -297,6 +286,7 @@ const scrollAnimationOn = (homeController) => {
   function debugPercentage() {
     console.log(tlServicesScroll.progress());
   }
+
   tlServicesScroll.fromTo(
     "#main-services",
     {
@@ -310,6 +300,7 @@ const scrollAnimationOn = (homeController) => {
   const tlServicesInnerElementsScroll = new gsap.timeline({
     onUpdate: debugPercentage
   });
+
   tlServicesInnerElementsScroll.fromTo(
     "#main-services .services .service",
     {
@@ -344,9 +335,9 @@ const scrollAnimationOn = (homeController) => {
   let serviceInnerElementsScene = new ScrollMagic.Scene({
     triggerElement: "#main-services",
     triggerHook: 1,
-    offset: 500,
+    offset: 450,
     // duration: serviceElement.offsetHeight - 500
-    duration: 500
+    duration: 450
   })
     .setTween(tlServicesInnerElementsScroll)
     // .addIndicators()
