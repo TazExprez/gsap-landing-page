@@ -171,9 +171,10 @@ const homeAnimation = () => {
         display: "none"
       },
       {
-        display: "block"
+        display: "block",
+        ease: "power1.inOut"
       },
-      ">-1.5"
+      ">-3.5"
     );
 };
 
@@ -208,10 +209,13 @@ const loadingLeave = () => {
   timeline.fromTo(
     ".loading-bg",
     {
-      y: "100%"
+      x: "100%",
+      opacity: 0
     },
     {
-      y: 0
+      x: 0,
+      opacity: 1,
+      ease: "power1.inOut"
     }
   );
 };
@@ -222,20 +226,29 @@ const loadingEnter = () => {
     .fromTo(
       ".loading-bg",
       {
-        y: 0
+        x: 0,
+        opacity: 1
       },
       {
-        y: "100%",
-        duration: 2
+        x: "-100%",
+        opacity: 0,
+        ease: "power1.inOut",
+        duration: 1.5
       }
     )
     .fromTo(
       ".outer-container",
       {
-        scale: 0.5
+        scale: 0.5,
+        maxHeight: "1080px",
+        borderBottom: "1px solid #4b16f0",
+        overflowY: "hidden"
       },
       {
-        scale: 1
+        scale: 1,
+        maxHeight: "100%",
+        borderBottom: "none",
+        overflowY: "auto"
       }
     );
 };
@@ -271,8 +284,6 @@ const galleryEnter = () => {
       }
     );
 };
-
-// let homeController = new ScrollMagic.Controller();
 
 const scrollAnimationOn = (homeController) => {
   // Scroll Animation
@@ -311,13 +322,8 @@ const scrollAnimationOn = (homeController) => {
       stagger: 0.4
     }
   );
-  // .to("#main-services .services .service .icon-circle.fa-phone", {
-  //   fontSize: "2rem"
-  // });
 
   const serviceElement = document.querySelector("#main-services");
-
-  // let homeController = new ScrollMagic.Controller();
 
   let serviceScene = new ScrollMagic.Scene({
     triggerElement: "#main-services",
@@ -352,8 +358,6 @@ const scrollAnimationOff = (homeController) => {
   homeController = null;
 };
 
-// scrollAnimationOn();
-
 barba.init({
   sync: true,
   transitions: [
@@ -371,33 +375,8 @@ barba.init({
       },
       async once(data) {
         headerAnimation();
-        // let homeController = new ScrollMagic.Controller();
       }
     },
-    // {
-    //   name: "home-transition",
-    //   from: {
-    //     namespace: ["about", "gallery"]
-    //   },
-    //   to: {
-    //     namespace: ["home"]
-    //   },
-    //   async leave(data) {
-    //     const done = this.async();
-    //     loadingLeave();
-    //     let homeController = new ScrollMagic.Controller();
-    //     scrollAnimationOff(homeController);
-    //     await delay(1500);
-    //     done();
-    //   },
-    //   async enter(data) {
-    //     loadingEnter();
-    //     headerAnimation();
-    //     homeAnimation();
-    //     let homeController = new ScrollMagic.Controller();
-    //     scrollAnimationOn(homeController);
-    //   }
-    // },
     {
       name: "gallery-transition",
       from: {
