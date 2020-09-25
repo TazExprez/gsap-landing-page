@@ -142,7 +142,7 @@ const homeAnimation = () => {
       {
         x:
           window.innerWidth >= 1450
-            ? 650
+            ? 600
             : window.innerWidth < 1450 && window.innerWidth >= 1200
             ? 450
             : 350,
@@ -959,11 +959,15 @@ barba.init({
       afterEnter(data) {
         loadingEnter();
         homeAnimation();
+        window.addEventListener("resize", homeAnimation);
         const createScrollEffect = () => {
           let homeController = new ScrollMagic.Controller();
           scrollAnimationOn(homeController);
         };
         setTimeout(createScrollEffect, 10);
+        // window.addEventListener("resize", () => {
+        //   setTimeout(createScrollEffect, 10);
+        // });
       },
 
       beforeLeave(data) {
