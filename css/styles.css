@@ -96,7 +96,7 @@ header .menu li a {
 }
 
 #home .content-area {
-  height: calc(100vh);
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -343,7 +343,7 @@ header .menu li a {
   }
 }
 
-@media only screen and (max-width: 1450px) {
+@media only screen and (max-width: 1449px) {
   header {
     width: 1100px;
   }
@@ -433,5 +433,187 @@ header .menu li a {
 
   #main-services .services .service .icon-circle .fa-phone {
     font-size: 1.8rem;
+  }
+}
+
+@media only screen and (max-width: 1023px) {
+  header {
+    width: 700px;
+  }
+
+  .container {
+    max-width: 700px;
+  }
+
+  #home .info-section h1 {
+    font-size: 2.4rem;
+  }
+
+  .action-btn,
+  .action-ghost-btn {
+    width: 130px;
+  }
+
+  #home .photos {
+    width: 50%;
+    position: relative;
+    height: 400px;
+  }
+
+  #home .photos .girl {
+    width: 220px;
+  }
+
+  #home .photos .boy {
+    width: 220px;
+    transform: translate3d(130px, 100px, 0);
+  }
+
+  .shape1 {
+    width: 250px;
+    height: 400px;
+  }
+
+  /* Scroll Sections */
+
+  #main-services h2 {
+    font-size: 2.5rem;
+    margin-bottom: 130px;
+  }
+
+  #main-services .services {
+    min-width: 900px;
+  }
+
+  #main-services .services h3 {
+    font-size: 1.4rem;
+  }
+
+  #main-services .services .service .icon-circle {
+    height: 80px;
+    width: 80px;
+  }
+
+  #main-services .services .service .icon-circle .fa-phone {
+    font-size: 1.8rem;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  header {
+    width: 90%;
+    height: 50px;
+  }
+
+  header .logo {
+    font-weight: 900;
+    font-size: 1.4rem;
+  }
+
+  header .menu {
+    display: none;
+  }
+
+  .container {
+    max-width: 90%;
+  }
+
+  #home .content-area {
+    height: calc(200vh - 50px);
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  #home .info-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: calc(50% - 50px);
+  }
+
+  #home .info-section h1 {
+    font-size: 2.6rem;
+    text-align: center;
+  }
+
+  #home .info-section h4 {
+    text-align: center;
+  }
+
+  #home .info-section .call-actions {
+    justify-content: center;
+  }
+
+  #home .photos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50%;
+  }
+
+  #home .photos .photos-mobile-container {
+    width: 288px;
+    height: 100%;
+  }
+
+  #home .photos .girl {
+    width: 180px;
+    transform: translate3d(20px, 0, 0);
+  }
+
+  #home .photos .boy {
+    width: 180px;
+    transform: translate3d(85px, 230px, 0);
+  }
+
+  .shape1 {
+    width: 185px;
+    height: 175px;
+    transform: translate3d(100px, 0, 0);
+  }
+
+  .shape2 {
+    width: 45px;
+    height: 45px;
+    transform: translate3d(600px, -300px, 0);
+  }
+
+  .shape3 {
+    width: 45px;
+    height: 45px;
+    transform: translate3d(0px, 300px, 0);
+
+  }
+
+  #main-services h2 {
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+  }
+
+  #main-services .services {
+    display: grid;
+    min-width: 0;
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  #main-services .services .service {
+    margin-bottom: 50px;
+  }
+
+  #main-services .services h3 {
+    font-size: 1.2rem;
+  }
+
+  #main-services .services .service .icon-circle {
+    height: 50px;
+    width: 50px;
+  }
+
+  #main-services .services .service .icon-circle .fa-phone {
+    font-size: 1.4rem;
   }
 }

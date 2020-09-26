@@ -34,7 +34,6 @@ const headerAnimation = () => {
 
 const homeAnimation = () => {
   let timeline = gsap.timeline();
-
   timeline
     .fromTo(
       ".info-section h1",
@@ -60,9 +59,11 @@ const homeAnimation = () => {
         height:
           window.innerWidth >= 1450
             ? 600
-            : window.innerWidth < 1450 && window.innerWidth >= 1200
+            : window.innerWidth < 1450 && window.innerWidth >= 768
             ? 500
-            : 500,
+            : window.innerWidth < 768
+            ? 313
+            : 313,
         duration: 1.4,
         ease: "power2.inOut"
       },
@@ -77,9 +78,11 @@ const homeAnimation = () => {
         height:
           window.innerWidth >= 1450
             ? 600
-            : window.innerWidth < 1450 && window.innerWidth >= 1200
+            : window.innerWidth < 1450 && window.innerWidth >= 768
             ? 500
-            : 500,
+            : window.innerWidth < 768
+            ? 313
+            : 313,
         duration: 1.4,
         ease: "power2.inOut"
       },
@@ -92,7 +95,15 @@ const homeAnimation = () => {
         opacity: 0
       },
       {
-        x: window.innerWidth < 1200 && window.innerWidth >= 1024 ? 50 : 100,
+        x:
+          window.innerWidth < 1200 && window.innerWidth >= 1024
+            ? 50
+            : window.innerWidth < 1024 && window.innerWidth >= 768
+            ? 50
+            : window.innerWidth < 768
+            ? 50
+            : 100,
+        y: window.innerWidth < 768 ? 184 : 0,
         scale: 1,
         opacity: 1,
         ease: "power2.inOut"
@@ -114,11 +125,11 @@ const homeAnimation = () => {
     .fromTo(
       ".shape3",
       {
-        x: -50,
-        y: 500
+        x: window.innerWidth >= 1024 ? -50 : 0,
+        y: window.innerWidth >= 768 ? 500 : 350
       },
       {
-        y: 465,
+        y: window.innerWidth >= 768 ? 465 : 380,
         repeat: -1,
         duration: 1.5,
         ease: "sine.inOut",
@@ -145,11 +156,15 @@ const homeAnimation = () => {
             ? 600
             : window.innerWidth < 1450 && window.innerWidth >= 1200
             ? 450
-            : 350,
-        y: -150
+            : window.innerWidth < 1200 && window.innerWidth >= 1024
+            ? 350
+            : window.innerWidth < 1200 && window.innerWidth >= 1024
+            ? 250
+            : 243,
+        y: window.innerWidth >= 768 ? -150 : 130
       },
       {
-        y: -185,
+        y: window.innerWidth >= 768 ? -185 : 100,
         repeat: -1,
         duration: 1.5,
         ease: "sine.inOut",
@@ -182,553 +197,6 @@ const homeAnimation = () => {
       },
       "h1Show+=1"
     );
-
-  // timeline
-  //   .fromTo(
-  //     ".info-section h1",
-  //     {
-  //       x: 0,
-  //       y: 100,
-  //       opacity: 0
-  //     },
-  //     {
-  //       x: 0,
-  //       y: 0,
-  //       opacity: 1,
-  //       duration: 1.3
-  //     }
-  //   )
-  //   .addLabel("h1Show")
-  //   .fromTo(
-  //     ".girl",
-  //     {
-  //       height: 0
-  //     },
-  //     {
-  //       height:
-  //         window.innerWidth >= 1450
-  //           ? 600
-  //           : window.innerWidth < 1450 && window.innerWidth >= 1200
-  //           ? 500
-  //           : 500,
-  //       duration: 1.4,
-  //       ease: "power2.inOut"
-  //     },
-  //     ">-0.5"
-  //   )
-  //   .fromTo(
-  //     ".boy",
-  //     {
-  //       height: 0
-  //     },
-  //     {
-  //       height:
-  //         window.innderWidth >= 1450
-  //           ? 600
-  //           : window.innerWidth < 1450 && window.innerWidth >= 1200
-  //           ? 500
-  //           : 500,
-  //       duration: 1.4,
-  //       ease: "power2.inOut"
-  //     },
-  //     ">-1"
-  //   )
-  //   .fromTo(
-  //     ".shape1",
-  //     {
-  //       scale: 0,
-  //       opacity: 0
-  //     },
-  //     {
-  //       x: window.innerWidth < 1200 && window.innerWidth >= 1024 ? 50 : 100,
-  //       scale: 1,
-  //       opacity: 1,
-  //       ease: "power2.inOut"
-  //     },
-  //     ">-1"
-  //   )
-  //   .fromTo(
-  //     ".shape3",
-  //     {
-  //       opacity: 0
-  //     },
-  //     {
-  //       opacity: 0.6,
-  //       ease: "power2.inOut",
-  //       duration: 1
-  //     },
-  //     ">-0.2"
-  //   )
-  //   .fromTo(
-  //     ".shape3",
-  //     {
-  //       x: -50,
-  //       y: 500
-  //     },
-  //     {
-  //       y: 465,
-  //       repeat: -1,
-  //       duration: 1.5,
-  //       ease: "sine.inOut",
-  //       yoyo: true
-  //     }
-  //   )
-  //   .fromTo(
-  //     ".shape2",
-  //     {
-  //       opacity: 0
-  //     },
-  //     {
-  //       opacity: 0.3,
-  //       ease: "power2.inOut",
-  //       duration: 1
-  //     },
-  //     ">-2"
-  //   )
-  //   .fromTo(
-  //     ".shape2",
-  //     {
-  //       x:
-  //         window.innerWidth >= 1450
-  //           ? 550
-  //           : window.innerWidth < 1450 && window.innerWidth >= 1200
-  //           ? 450
-  //           : 350,
-  //       y: -150
-  //     },
-  //     {
-  //       y: -185,
-  //       repeat: -1,
-  //       duration: 1.5,
-  //       ease: "sine.inOut",
-  //       yoyo: true
-  //     }
-  //   )
-  //   .fromTo(
-  //     ".info-section h4",
-  //     {
-  //       x: -50,
-  //       opacity: 0
-  //     },
-  //     {
-  //       x: 0,
-  //       opacity: 1,
-  //       duration: 1.3
-  //     },
-  //     "h1Show"
-  //   )
-  //   .fromTo(
-  //     ".call-actions",
-  //     {
-  //       x: -50,
-  //       opacity: 0
-  //     },
-  //     {
-  //       x: 0,
-  //       opacity: 1,
-  //       duration: 1.3
-  //     },
-  //     "h1Show+=1"
-  //   );
-
-  // if (window.innerWidth >= 1450) {
-  // timeline
-  //   .fromTo(
-  //     ".info-section h1",
-  //     {
-  //       x: 0,
-  //       y: 100,
-  //       opacity: 0
-  //     },
-  //     {
-  //       x: 0,
-  //       y: 0,
-  //       opacity: 1,
-  //       duration: 1.3
-  //     }
-  //   )
-  //   .addLabel("h1Show")
-  //   .fromTo(
-  //     ".girl",
-  //     {
-  //       height: 0
-  //     },
-  //     {
-  //       height: 600,
-  //       duration: 1.4,
-  //       ease: "power2.inOut"
-  //     },
-  //     ">-0.5"
-  //   )
-  //   .fromTo(
-  //     ".boy",
-  //     {
-  //       height: 0
-  //     },
-  //     {
-  //       height: 600,
-  //       duration: 1.4,
-  //       ease: "power2.inOut"
-  //     },
-  //     ">-1"
-  //   )
-  //   .fromTo(
-  //     ".shape1",
-  //     {
-  //       scale: 0,
-  //       opacity: 0
-  //     },
-  //     {
-  //       scale: 1,
-  //       opacity: 1,
-  //       ease: "power2.inOut"
-  //     },
-  //     ">-1"
-  //   )
-  //   .fromTo(
-  //     ".shape3",
-  //     {
-  //       opacity: 0
-  //     },
-  //     {
-  //       opacity: 0.6,
-  //       ease: "power2.inOut",
-  //       duration: 1
-  //     },
-  //     ">-0.2"
-  //   )
-  //   .fromTo(
-  //     ".shape3",
-  //     {
-  //       x: -50,
-  //       y: 500
-  //     },
-  //     {
-  //       y: 465,
-  //       repeat: -1,
-  //       duration: 1.5,
-  //       ease: "sine.inOut",
-  //       yoyo: true
-  //     }
-  //   )
-  //   .fromTo(
-  //     ".shape2",
-  //     {
-  //       opacity: 0
-  //     },
-  //     {
-  //       opacity: 0.3,
-  //       ease: "power2.inOut",
-  //       duration: 1
-  //     },
-  //     ">-2"
-  //   )
-  //   .fromTo(
-  //     ".shape2",
-  //     {
-  //       x: 550,
-  //       y: -150
-  //     },
-  //     {
-  //       y: -185,
-  //       repeat: -1,
-  //       duration: 1.5,
-  //       ease: "sine.inOut",
-  //       yoyo: true
-  //     }
-  //   )
-  //   .fromTo(
-  //     ".info-section h4",
-  //     {
-  //       x: -50,
-  //       opacity: 0
-  //     },
-  //     {
-  //       x: 0,
-  //       opacity: 1,
-  //       duration: 1.3
-  //     },
-  //     "h1Show"
-  //   )
-  //   .fromTo(
-  //     ".call-actions",
-  //     {
-  //       x: -50,
-  //       opacity: 0
-  //     },
-  //     {
-  //       x: 0,
-  //       opacity: 1,
-  //       duration: 1.3
-  //     },
-  //     "h1Show+=1"
-  //   );
-  // } else if (window.innerWidth < 1450 && window.innerWidth >= 1200) {
-  // timeline
-  //   .fromTo(
-  //     ".info-section h1",
-  //     {
-  //       x: 0,
-  //       y: 100,
-  //       opacity: 0
-  //     },
-  //     {
-  //       x: 0,
-  //       y: 0,
-  //       opacity: 1,
-  //       duration: 1.3
-  //     }
-  //   )
-  //   .addLabel("h1Show")
-  //   .fromTo(
-  //     ".girl",
-  //     {
-  //       height: 0
-  //     },
-  //     {
-  //       height: 500,
-  //       duration: 1.4,
-  //       ease: "power2.inOut"
-  //     },
-  //     ">-0.5"
-  //   )
-  //   .fromTo(
-  //     ".boy",
-  //     {
-  //       height: 0
-  //     },
-  //     {
-  //       height: 500,
-  //       duration: 1.4,
-  //       ease: "power2.inOut"
-  //     },
-  //     ">-1"
-  //   )
-  //   .fromTo(
-  //     ".shape1",
-  //     {
-  //       scale: 0,
-  //       opacity: 0
-  //     },
-  //     {
-  //       scale: 1,
-  //       opacity: 1,
-  //       ease: "power2.inOut"
-  //     },
-  //     ">-1"
-  //   )
-  //   .fromTo(
-  //     ".shape3",
-  //     {
-  //       opacity: 0
-  //     },
-  //     {
-  //       opacity: 0.6,
-  //       ease: "power2.inOut",
-  //       duration: 1
-  //     },
-  //     ">-0.2"
-  //   )
-  //   .fromTo(
-  //     ".shape3",
-  //     {
-  //       x: -50,
-  //       y: 500
-  //     },
-  //     {
-  //       y: 465,
-  //       repeat: -1,
-  //       duration: 1.5,
-  //       ease: "sine.inOut",
-  //       yoyo: true
-  //     }
-  //   )
-  //   .fromTo(
-  //     ".shape2",
-  //     {
-  //       opacity: 0
-  //     },
-  //     {
-  //       opacity: 0.3,
-  //       ease: "power2.inOut",
-  //       duration: 1
-  //     },
-  //     ">-2"
-  //   )
-  //   .fromTo(
-  //     ".shape2",
-  //     {
-  //       x: 450,
-  //       y: -150
-  //     },
-  //     {
-  //       y: -185,
-  //       repeat: -1,
-  //       duration: 1.5,
-  //       ease: "sine.inOut",
-  //       yoyo: true
-  //     }
-  //   )
-  //   .fromTo(
-  //     ".info-section h4",
-  //     {
-  //       x: -50,
-  //       opacity: 0
-  //     },
-  //     {
-  //       x: 0,
-  //       opacity: 1,
-  //       duration: 1.3
-  //     },
-  //     "h1Show"
-  //   )
-  //   .fromTo(
-  //     ".call-actions",
-  //     {
-  //       x: -50,
-  //       opacity: 0
-  //     },
-  //     {
-  //       x: 0,
-  //       opacity: 1,
-  //       duration: 1.3
-  //     },
-  //     "h1Show+=1"
-  //   );
-  // } else if (window.innerWidth < 1200 && window.innerWidth >= 1024) {
-  // timeline
-  //   .fromTo(
-  //     ".info-section h1",
-  //     {
-  //       x: 0,
-  //       y: 100,
-  //       opacity: 0
-  //     },
-  //     {
-  //       x: 0,
-  //       y: 0,
-  //       opacity: 1,
-  //       duration: 1.3
-  //     }
-  //   )
-  //   .addLabel("h1Show")
-  //   .fromTo(
-  //     ".girl",
-  //     {
-  //       height: 0
-  //     },
-  //     {
-  //       height: 500,
-  //       duration: 1.4,
-  //       ease: "power2.inOut"
-  //     },
-  //     ">-0.5"
-  //   )
-  //   .fromTo(
-  //     ".boy",
-  //     {
-  //       height: 0
-  //     },
-  //     {
-  //       height: 500,
-  //       duration: 1.4,
-  //       ease: "power2.inOut"
-  //     },
-  //     ">-1"
-  //   )
-  //   .fromTo(
-  //     ".shape1",
-  //     {
-  //       scale: 0,
-  //       opacity: 0
-  //     },
-  //     {
-  //       x: 50,
-  //       scale: 1,
-  //       opacity: 1,
-  //       ease: "power2.inOut"
-  //     },
-  //     ">-1"
-  //   )
-  //   .fromTo(
-  //     ".shape3",
-  //     {
-  //       opacity: 0
-  //     },
-  //     {
-  //       opacity: 0.6,
-  //       ease: "power2.inOut",
-  //       duration: 1
-  //     },
-  //     ">-0.2"
-  //   )
-  //   .fromTo(
-  //     ".shape3",
-  //     {
-  //       x: -50,
-  //       y: 500
-  //     },
-  //     {
-  //       y: 465,
-  //       repeat: -1,
-  //       duration: 1.5,
-  //       ease: "sine.inOut",
-  //       yoyo: true
-  //     }
-  //   )
-  //   .fromTo(
-  //     ".shape2",
-  //     {
-  //       opacity: 0
-  //     },
-  //     {
-  //       opacity: 0.3,
-  //       ease: "power2.inOut",
-  //       duration: 1
-  //     },
-  //     ">-2"
-  //   )
-  //   .fromTo(
-  //     ".shape2",
-  //     {
-  //       x: 350,
-  //       y: -150
-  //     },
-  //     {
-  //       y: -185,
-  //       repeat: -1,
-  //       duration: 1.5,
-  //       ease: "sine.inOut",
-  //       yoyo: true
-  //     }
-  //   )
-  //   .fromTo(
-  //     ".info-section h4",
-  //     {
-  //       x: -50,
-  //       opacity: 0
-  //     },
-  //     {
-  //       x: 0,
-  //       opacity: 1,
-  //       duration: 1.3
-  //     },
-  //     "h1Show"
-  //   )
-  //   .fromTo(
-  //     ".call-actions",
-  //     {
-  //       x: -50,
-  //       opacity: 0
-  //     },
-  //     {
-  //       x: 0,
-  //       opacity: 1,
-  //       duration: 1.3
-  //     },
-  //     "h1Show+=1"
-  //   );
-  // }
 };
 
 const aboutAnimation = () => {
@@ -913,6 +381,26 @@ const scrollAnimationOff = (homeController) => {
   homeController = null;
 };
 
+function debounce(func, time) {
+  var time = time || 100; // 100 by default if no param
+  var timer;
+  return function (event) {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(func, time, event);
+  };
+}
+
+// const debounce = (func, debounceTime) => {
+//   let time = debounceTime || 100;
+//   let timer;
+//   (event) => {
+//     if (timer) {
+//       clearTimeout(timer);
+//     }
+//     timer = setTimeout(func, time, event);
+//   };
+// };
+
 barba.init({
   sync: true,
   transitions: [
@@ -959,7 +447,7 @@ barba.init({
       afterEnter(data) {
         loadingEnter();
         homeAnimation();
-        window.addEventListener("resize", homeAnimation);
+        window.addEventListener("resize", debounce(homeAnimation, 700));
         const createScrollEffect = () => {
           let homeController = new ScrollMagic.Controller();
           scrollAnimationOn(homeController);
@@ -994,7 +482,3 @@ barba.init({
     }
   ]
 });
-
-// barba.hooks.enter((data) => {
-//   headerAnimation();
-// });
