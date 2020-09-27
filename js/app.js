@@ -254,21 +254,27 @@ const loadingEnter = () => {
         x: "-100%",
         opacity: 0,
         ease: "power1.inOut",
-        duration: 1.5
+        // duration: 1.5
+        duration: 2.5
       }
     )
     .fromTo(
       ".outer-container",
       {
         scale: 0.5,
-        maxHeight: "1080px",
+        height:
+          window.innerHeight + "px" ||
+          document.documentElement.clientHeight + "px" ||
+          document.body.clientHeight + "px",
         borderBottom: "1px solid #4b16f0",
         overflowY: "hidden"
       },
       {
         scale: 1,
-        maxHeight: "100%",
+        // This caused me a lot of grief because it would pull the screen down as it was getting resized to 100% height.  This was not necessary.
+        // maxHeight: "100%",
         borderBottom: "none",
+        // duration: 1,
         overflowY: "auto"
       }
     );
@@ -304,6 +310,17 @@ const galleryEnter = () => {
         ease: "power1.inOut"
       }
     );
+};
+
+const resizeScreen = () => {
+  let timeline = gsap.timeline();
+  timeline.to(".outer-container", {
+    height:
+      window.innerHeight + "px" ||
+      document.documentElement.clientHeight + "px" ||
+      document.body.clientHeight + "px"
+    // duration: 0.01
+  });
 };
 
 const scrollAnimationOn = (homeController) => {
@@ -437,6 +454,7 @@ barba.init({
       async enter(data) {
         loadingEnter();
         headerAnimation();
+        // delay(1500);
         galleryEnter();
       }
     }
@@ -453,9 +471,6 @@ barba.init({
           scrollAnimationOn(homeController);
         };
         setTimeout(createScrollEffect, 10);
-        // window.addEventListener("resize", () => {
-        //   setTimeout(createScrollEffect, 10);
-        // });
       },
 
       beforeLeave(data) {
@@ -471,6 +486,7 @@ barba.init({
       afterEnter(data) {
         loadingEnter();
         aboutAnimation();
+        window.addEventListener("resize", debounce(resizeScreen, 700));
       }
     },
     {
@@ -478,6 +494,7 @@ barba.init({
       afterEnter(data) {
         loadingEnter();
         galleryEnter();
+        window.addEventListener("resize", debounce(resizeScreen, 700));
       }
     }
   ]
