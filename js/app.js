@@ -609,7 +609,7 @@ const scrollAnimationBottomOn = (homeController) => {
   let serviceScene = new ScrollMagic.Scene({
     triggerElement: "#main-services",
     triggerHook: 1,
-    duration: 500
+    duration: window.innerWidth > 767 ? 500 : 568
   })
     .setTween(tlServicesScroll)
     // .addIndicators()
@@ -618,7 +618,7 @@ const scrollAnimationBottomOn = (homeController) => {
   let serviceInnerElementsScene = new ScrollMagic.Scene({
     triggerElement: "#main-services",
     triggerHook: 1,
-    offset: 450,
+    offset: window.innerWidth > 767 ? 450 : 100,
     duration: 450
   })
     .setTween(tlServicesInnerElementsScroll)
