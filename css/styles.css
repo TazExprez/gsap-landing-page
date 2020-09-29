@@ -25,6 +25,9 @@ body {
       #4b16f0,
       #2512eb);
   height: 100%;
+  overflow-x: hidden;
+  /**/
+  /* overflow-y: auto;  */
 }
 
 .loading-bg {
@@ -102,8 +105,16 @@ header .menu li a {
   align-items: center;
 }
 
-#home .info-section {
+#home .mobile-header {
+  display: none;
+}
+
+#home .mobile-header-and-info-section-container {
   width: 50%;
+}
+
+#home .info-section {
+  width: 100%;
 }
 
 #home .info-section h1 {
@@ -356,12 +367,6 @@ header .menu li a {
     font-size: 3rem;
   }
 
-  #home .photos {
-    width: 50%;
-    position: relative;
-    height: 400px;
-  }
-
   #home .photos .girl {
     width: 300px;
   }
@@ -394,12 +399,6 @@ header .menu li a {
 
   #home .info-section h1 {
     font-size: 2.6rem;
-  }
-
-  #home .photos {
-    width: 50%;
-    position: relative;
-    height: 400px;
   }
 
   #home .photos .girl {
@@ -500,7 +499,8 @@ header .menu li a {
 }
 
 @media only screen and (max-width: 767px) {
-  header {
+
+  /* header {
     width: 90%;
     height: 50px;
   }
@@ -512,24 +512,64 @@ header .menu li a {
 
   header .menu {
     display: none;
+  } */
+  header {
+    display: none;
   }
 
   .container {
-    max-width: 90%;
+    max-width: 100%;
+  }
+
+  #home {
+    padding-bottom: 0;
   }
 
   #home .content-area {
-    height: calc(200vh - 50px);
+    /* height: calc(200vh - 50px); */
+    height: 200vh;
     flex-direction: column;
     justify-content: space-between;
   }
 
-  #home .info-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  #home .mobile-header-and-info-section-outer-container {
+    z-index: 40;
+    /* background: white; */
+    height: 100vh;
+  }
+
+  /* #home .info-section { */
+  #home .mobile-header-and-info-section-container {
+    /* display: flex; */
+    display: block;
+    /* flex-direction: column;
+    justify-content: center; */
     width: 100%;
-    height: calc(50% - 50px);
+    /* height: calc(50% - 50px); */
+    /* height: 50%; */
+    height: 100vh;
+    z-index: 50;
+    /* background-image: linear-gradient(to right top,
+        #8e27ff,
+        #7b21fa,
+        #651bf5,
+        #4b16f0,
+        #2512eb); */
+  }
+
+  #home .mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+  }
+
+  #home .info-section-only-container {
+    display: flex;
+    align-items: center;
+    height: calc(100vh - 50px);
+    width: 100%;
   }
 
   #home .info-section h1 {
@@ -552,6 +592,7 @@ header .menu li a {
     align-items: center;
     width: 100%;
     height: 50%;
+    /* height: 100vh; */
   }
 
   #home .photos .photos-mobile-container {
@@ -560,36 +601,62 @@ header .menu li a {
   }
 
   #home .photos .girl {
+    height: 313px;
     width: 180px;
     transform: translate3d(20px, 0, 0);
   }
 
   #home .photos .boy {
+    height: 313px;
     width: 180px;
-    transform: translate3d(85px, 230px, 0);
+    /* transform: translate3d(85px, 230px, 0); */
+    transform: translate3d(310px, 230px, 0);
   }
 
   .shape1 {
     width: 185px;
     height: 175px;
-    transform: translate3d(100px, 0, 0);
+    transform: translate3d(50px, 184px, 0);
   }
 
   .shape2 {
     width: 45px;
     height: 45px;
-    transform: translate3d(600px, -300px, 0);
+    transform: translate3d(240px, 100px, 0);
+  }
+
+  @keyframes moveShape2 {
+    0% {
+      transform: translate3d(240px, 100px, 0);
+    }
+
+    100% {
+      transform: translate3d(240px, 70px, 0);
+    }
+  }
+
+  .moveShape2 {
+    animation: moveShape2 2s ease-in-out infinite alternate;
   }
 
   .shape3 {
     width: 45px;
     height: 45px;
-    transform: translate3d(0px, 300px, 0);
-
+    transform: translate3d(0px, 380px, 0);
   }
 
-  #about .content-area {
-    height: calc(100vh - 50px);
+  @keyframes moveShape3 {
+    0% {
+      transform: translate3d(0px, 380px, 0);
+    }
+
+    100% {
+      transform: translate3d(0px, 350px, 0);
+    }
+  }
+
+  .moveShape3 {
+    animation: moveShape3 2s ease-in-out infinite alternate;
   }
 
   #main-services h2 {
@@ -621,6 +688,10 @@ header .menu li a {
     font-size: 1.4rem;
   }
 
+  #about .content-area {
+    height: calc(100vh - 50px);
+  }
+
   #gallery .content-area {
     min-height: calc(100vh - 90px);
     padding-bottom: 50px;
@@ -629,7 +700,6 @@ header .menu li a {
   #gallery .white-bg {
     background: white;
     padding: 20px;
-
   }
 
   #gallery .white-bg h2 {

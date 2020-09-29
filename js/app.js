@@ -32,7 +32,7 @@ const headerAnimation = () => {
     );
 };
 
-const homeAnimation = () => {
+const homeAnimationFullLarge = () => {
   let timeline = gsap.timeline();
   timeline
     .fromTo(
@@ -53,7 +53,7 @@ const homeAnimation = () => {
     .fromTo(
       ".girl",
       {
-        height: 0
+        height: window.innerWidth > 767 ? 0 : 313
       },
       {
         height:
@@ -61,8 +61,6 @@ const homeAnimation = () => {
             ? 600
             : window.innerWidth < 1450 && window.innerWidth >= 768
             ? 500
-            : window.innerWidth < 768
-            ? 313
             : 313,
         duration: 1.4,
         ease: "power2.inOut"
@@ -72,7 +70,7 @@ const homeAnimation = () => {
     .fromTo(
       ".boy",
       {
-        height: 0
+        height: window.innerWidth > 767 ? 0 : 313
       },
       {
         height:
@@ -80,8 +78,6 @@ const homeAnimation = () => {
             ? 600
             : window.innerWidth < 1450 && window.innerWidth >= 768
             ? 500
-            : window.innerWidth < 768
-            ? 313
             : 313,
         duration: 1.4,
         ease: "power2.inOut"
@@ -199,6 +195,52 @@ const homeAnimation = () => {
     );
 };
 
+const homeAnimationTopSmall = () => {
+  let timeline = gsap.timeline();
+  timeline
+    .fromTo(
+      ".info-section h1",
+      {
+        x: 0,
+        y: 100,
+        opacity: 0
+      },
+      {
+        x: 0,
+        y: 0,
+        opacity: 1,
+        duration: 1.3
+      }
+    )
+    .addLabel("h1Show")
+    .fromTo(
+      ".info-section h4",
+      {
+        x: -50,
+        opacity: 0
+      },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 1.3
+      },
+      "h1Show"
+    )
+    .fromTo(
+      ".call-actions",
+      {
+        x: -50,
+        opacity: 0
+      },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 1.3
+      },
+      "h1Show+=1"
+    );
+};
+
 const aboutAnimation = () => {
   let timeline = gsap.timeline();
   timeline.fromTo(
@@ -254,7 +296,6 @@ const loadingEnter = () => {
         x: "-100%",
         opacity: 0,
         ease: "power1.inOut",
-        // duration: 1.5
         duration: 2.5
       }
     )
@@ -274,10 +315,51 @@ const loadingEnter = () => {
         // This caused me a lot of grief because it would pull the screen down as it was getting resized to 100% height.  This was not necessary.
         // maxHeight: "100%",
         borderBottom: "none",
-        // duration: 1,
         overflowY: "auto"
       }
     );
+};
+
+const loadingEnterHomeSmall = () => {
+  let timeline = gsap.timeline();
+  timeline
+    .fromTo(
+      ".loading-bg",
+      {
+        x: 0,
+        opacity: 1
+      },
+      {
+        x: "-100%",
+        opacity: 0,
+        ease: "power1.inOut",
+        duration: 2.5
+      }
+    )
+    .fromTo(
+      ".mobile-header-and-info-section-container",
+      {
+        scale: 0.5,
+        height: "100%",
+        backgroundImage:
+          "linear-gradient(to right top, #8e27ff, #7b21fa, #651bf5, #4b16f0, #2512eb)"
+      },
+      {
+        scale: 1
+      }
+    )
+    .fromTo(
+      ".mobile-header-and-info-section-outer-container",
+      {
+        background: "white"
+      },
+      {
+        background: "transparent"
+      }
+    )
+    .to(".mobile-header-and-info-section-container", {
+      backgroundImage: "none"
+    });
 };
 
 const galleryEnter = () => {
@@ -319,11 +401,172 @@ const resizeScreen = () => {
       window.innerHeight + "px" ||
       document.documentElement.clientHeight + "px" ||
       document.body.clientHeight + "px"
-    // duration: 0.01
   });
 };
 
-const scrollAnimationOn = (homeController) => {
+const scrollAnimationMiddleOn = (homeController) => {
+  // const tlPhotosScroll = new gsap.timeline({
+  //   onUpdate: debugPercentage
+  // });
+
+  const tlGirlScroll = gsap.timeline();
+  const tlBoyScroll = gsap.timeline();
+  const tlShape1Scroll = gsap.timeline();
+  const tlShape3Scroll = gsap.timeline();
+  const tlShape2Scroll = gsap.timeline();
+
+  function debugPercentage() {
+    console.log(tlPhotosScroll.progress());
+  }
+
+  tlGirlScroll.fromTo(
+    ".girl",
+    {
+      x: "-100%"
+    },
+    {
+      x: "20px"
+    }
+  );
+
+  tlBoyScroll.fromTo(
+    ".boy",
+    {
+      x: "310px"
+    },
+    {
+      x: "80px"
+    }
+  );
+
+  tlShape1Scroll.fromTo(
+    ".shape1",
+    {
+      scale: 0,
+      opacity: 0
+    },
+    {
+      scale: 1,
+      opacity: 1
+    }
+  );
+
+  tlShape2Scroll.fromTo(
+    ".shape2",
+    {
+      opacity: 0
+    },
+    {
+      opacity: 0.3
+    }
+  );
+
+  tlShape3Scroll.fromTo(
+    ".shape3",
+    {
+      opacity: 0
+    },
+    {
+      opacity: 0.6
+    }
+  );
+
+  // .fromTo(
+  //   ".shape3",
+  //   {
+  //     y: 350
+  //   },
+  //   {
+  //     y: 380
+  //     // repeat: -1,
+  //     // duration: 1.5,
+  //     // ease: "sine.inOut",
+  //     // yoyo: true
+  //   }
+  // )
+  // .fromTo(
+  //   ".shape2",
+  //   {
+  //     y: 130
+  //   },
+  //   {
+  //     y: 100
+  //     // repeat: -1,
+  //     // duration: 1.5,
+  //     // ease: "sine.inOut",
+  //     // yoyo: true
+  //   }
+  // );
+
+  let girlScene = new ScrollMagic.Scene({
+    triggerElement: "#home .photos",
+    triggerHook: 1,
+    duration: 300
+  })
+    .setTween(tlGirlScroll)
+    // .addIndicators()
+    .addTo(homeController);
+
+  let boyScene = new ScrollMagic.Scene({
+    triggerElement: "#home .photos",
+    triggerHook: 1,
+    offset: 250,
+    duration: 300
+  })
+    .setTween(tlBoyScroll)
+    // .addIndicators()
+    .addTo(homeController);
+
+  let shape1Scene = new ScrollMagic.Scene({
+    triggerElement: "#home .photos",
+    triggerHook: 1,
+    offset: 150,
+    duration: 300
+  })
+    .setTween(tlShape1Scroll)
+    // .addIndicators()
+    .addTo(homeController);
+
+  let shape2Scene = new ScrollMagic.Scene({
+    triggerElement: "#home .photos",
+    triggerHook: 1,
+    offset: 450,
+    duration: 100
+  })
+    .setTween(tlShape2Scroll)
+    // .addIndicators()
+    .addTo(homeController);
+
+  let shape3Scene = new ScrollMagic.Scene({
+    triggerElement: "#home .photos",
+    triggerHook: 1,
+    offset: 500,
+    duration: 50
+  })
+    .setTween(tlShape3Scroll)
+    // .addIndicators()
+    .addTo(homeController);
+
+  let moveShape2Scene = new ScrollMagic.Scene({
+    triggerElement: "#home .photos",
+    triggerHook: 1,
+    offset: 500
+  })
+    .setClassToggle(".shape2", "moveShape2")
+    // .addIndicators()
+    .addTo(homeController);
+
+  let moveShape3Scene = new ScrollMagic.Scene({
+    triggerElement: "#home .photos",
+    triggerHook: 1,
+    offset: 520
+  })
+    .setClassToggle(".shape3", "moveShape3")
+    // .addIndicators()
+    .addTo(homeController);
+};
+
+const scrollAnimationBottomOn = (homeController) => {
   // Scroll Animation
 
   // You could have done this like the following commented code, but we want to be able to debug it, so we did it like the code below this, instead.
@@ -363,18 +606,9 @@ const scrollAnimationOn = (homeController) => {
     }
   );
 
-  const serviceElement = document.querySelector("#main-services");
-
   let serviceScene = new ScrollMagic.Scene({
     triggerElement: "#main-services",
     triggerHook: 1,
-    // offset: 100,
-    // offset: 450,
-    // reverse: false,
-    // This is not necessary because reverse: true is the default value.
-    // reverse: true,
-    // duration: 1000
-    // duration: serviceElement.offsetHeight
     duration: 500
   })
     .setTween(tlServicesScroll)
@@ -385,7 +619,6 @@ const scrollAnimationOn = (homeController) => {
     triggerElement: "#main-services",
     triggerHook: 1,
     offset: 450,
-    // duration: serviceElement.offsetHeight - 500
     duration: 450
   })
     .setTween(tlServicesInnerElementsScroll)
@@ -399,24 +632,13 @@ const scrollAnimationOff = (homeController) => {
 };
 
 function debounce(func, time) {
-  var time = time || 100; // 100 by default if no param
+  var time = time || 100;
   var timer;
   return function (event) {
     if (timer) clearTimeout(timer);
     timer = setTimeout(func, time, event);
   };
 }
-
-// const debounce = (func, debounceTime) => {
-//   let time = debounceTime || 100;
-//   let timer;
-//   (event) => {
-//     if (timer) {
-//       clearTimeout(timer);
-//     }
-//     timer = setTimeout(func, time, event);
-//   };
-// };
 
 barba.init({
   sync: true,
@@ -454,7 +676,6 @@ barba.init({
       async enter(data) {
         loadingEnter();
         headerAnimation();
-        // delay(1500);
         galleryEnter();
       }
     }
@@ -463,14 +684,31 @@ barba.init({
     {
       namespace: "home",
       afterEnter(data) {
-        loadingEnter();
-        homeAnimation();
-        window.addEventListener("resize", debounce(homeAnimation, 700));
-        const createScrollEffect = () => {
-          let homeController = new ScrollMagic.Controller();
-          scrollAnimationOn(homeController);
-        };
-        setTimeout(createScrollEffect, 10);
+        if (window.innerWidth >= 768) {
+          loadingEnter();
+          homeAnimationFullLarge();
+        } else {
+          loadingEnterHomeSmall();
+          homeAnimationTopSmall();
+        }
+        window.addEventListener(
+          "resize",
+          debounce(homeAnimationFullLarge, 700)
+        );
+        if (window.innerWidth >= 768) {
+          const createScrollEffect = () => {
+            let homeController = new ScrollMagic.Controller();
+            scrollAnimationBottomOn(homeController);
+          };
+          setTimeout(createScrollEffect, 10);
+        } else {
+          const createScrollEffect = () => {
+            let homeController = new ScrollMagic.Controller();
+            scrollAnimationMiddleOn(homeController);
+            scrollAnimationBottomOn(homeController);
+          };
+          setTimeout(createScrollEffect, 10);
+        }
       },
 
       beforeLeave(data) {
