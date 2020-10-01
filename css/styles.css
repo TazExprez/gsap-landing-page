@@ -98,6 +98,10 @@ header .menu li a {
   padding-bottom: 50px;
 }
 
+#home .mobile-header-and-info-section-outer-container {
+  display: none;
+}
+
 #home .content-area {
   height: 100vh;
   display: flex;
@@ -109,12 +113,8 @@ header .menu li a {
   display: none;
 }
 
-#home .mobile-header-and-info-section-container {
-  width: 50%;
-}
-
 #home .info-section {
-  width: 100%;
+  width: 50%;
 }
 
 #home .info-section h1 {
@@ -159,6 +159,7 @@ header .menu li a {
 }
 
 .action-ghost-btn {
+  padding: 18px 18px;
   background: transparent;
   border: 2px solid white;
   color: white;
@@ -499,20 +500,6 @@ header .menu li a {
 }
 
 @media only screen and (max-width: 767px) {
-
-  /* header {
-    width: 90%;
-    height: 50px;
-  }
-
-  header .logo {
-    font-weight: 900;
-    font-size: 1.4rem;
-  }
-
-  header .menu {
-    display: none;
-  } */
   header {
     display: none;
   }
@@ -532,7 +519,12 @@ header .menu li a {
     justify-content: space-between;
   }
 
+  #home .content-area .larger-than-mobile-device-info-section-container {
+    display: none;
+  }
+
   #home .mobile-header-and-info-section-outer-container {
+    display: flex;
     z-index: 40;
     /* background: white; */
     height: 100vh;
@@ -557,7 +549,7 @@ header .menu li a {
         #2512eb); */
   }
 
-  #home .mobile-header {
+  #home .mobile-header-and-info-section-container .mobile-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -565,24 +557,41 @@ header .menu li a {
     width: 100%;
   }
 
-  #home .info-section-only-container {
+  #home .mobile-header-and-info-section-container .info-section-only-container {
     display: flex;
+    justify-content: center;
     align-items: center;
     height: calc(100vh - 50px);
     width: 100%;
   }
 
-  #home .info-section h1 {
+  #home .mobile-header-and-info-section-container .info-section {
+    width: 100%;
+  }
+
+  #home .mobile-header-and-info-section-container .info-section h1 {
     font-size: 2.6rem;
     text-align: center;
   }
 
-  #home .info-section h4 {
+  #home .mobile-header-and-info-section-container .info-section h4 {
     text-align: center;
   }
 
-  #home .info-section .call-actions {
+  #home .mobile-header-and-info-section-container .info-section .call-actions {
     justify-content: center;
+  }
+
+
+
+  .action-btn,
+  .action-ghost-btn {
+    padding: 15px 15px;
+    width: 100px;
+  }
+
+  .action-ghost-btn {
+    padding: 13px 13px;
   }
 
   #home .photos {
@@ -595,43 +604,46 @@ header .menu li a {
     /* height: 100vh; */
   }
 
-  #home .photos .photos-mobile-container {
+  /* #home .photos .photos-mobile-container { */
+  /* #home .photos {
     width: 288px;
     height: 100%;
-  }
+  } */
 
   #home .photos .girl {
     height: 313px;
     width: 180px;
-    transform: translate3d(20px, 0, 0);
+    /* transform: translate3d(20px, 0, 0); */
+    transform: translate3d(-20px, -105px, 0);
   }
 
   #home .photos .boy {
     height: 313px;
     width: 180px;
-    /* transform: translate3d(85px, 230px, 0); */
-    transform: translate3d(310px, 230px, 0);
+    /* transform: translate3d(310px, 230px, 0); */
+    transform: translate3d(30px, 110px, 0);
   }
 
   .shape1 {
     width: 185px;
     height: 175px;
-    transform: translate3d(50px, 184px, 0);
+    /* transform: translate3d(50px, 184px, 0); */
+    transform: translate3d(5px, 3px, 0);
   }
 
   .shape2 {
     width: 45px;
     height: 45px;
-    transform: translate3d(240px, 100px, 0);
+    transform: translate3d(120px, -150px, 0);
   }
 
   @keyframes moveShape2 {
     0% {
-      transform: translate3d(240px, 100px, 0);
+      transform: translate3d(120px, -150px, 0);
     }
 
     100% {
-      transform: translate3d(240px, 70px, 0);
+      transform: translate3d(120px, -120px, 0);
     }
   }
 
@@ -642,16 +654,16 @@ header .menu li a {
   .shape3 {
     width: 45px;
     height: 45px;
-    transform: translate3d(0px, 380px, 0);
+    transform: translate3d(-110px, 130px, 0);
   }
 
   @keyframes moveShape3 {
     0% {
-      transform: translate3d(0px, 380px, 0);
+      transform: translate3d(-110px, 130px, 0);
     }
 
     100% {
-      transform: translate3d(0px, 350px, 0);
+      transform: translate3d(-110px, 160px, 0);
     }
   }
 

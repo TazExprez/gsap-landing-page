@@ -36,7 +36,7 @@ const homeAnimationFullLarge = () => {
   let timeline = gsap.timeline();
   timeline
     .fromTo(
-      ".info-section h1",
+      ".larger-than-mobile-device-info-section-container .info-section h1",
       {
         x: 0,
         y: 100,
@@ -168,7 +168,7 @@ const homeAnimationFullLarge = () => {
       }
     )
     .fromTo(
-      ".info-section h4",
+      ".larger-than-mobile-device-info-section-container .info-section h4",
       {
         x: -50,
         opacity: 0
@@ -181,7 +181,7 @@ const homeAnimationFullLarge = () => {
       "h1Show"
     )
     .fromTo(
-      ".call-actions",
+      ".larger-than-mobile-device-info-section-container .call-actions",
       {
         x: -50,
         opacity: 0
@@ -199,7 +199,7 @@ const homeAnimationTopSmall = () => {
   let timeline = gsap.timeline();
   timeline
     .fromTo(
-      ".info-section h1",
+      ".mobile-header-and-info-section-outer-container .info-section h1",
       {
         x: 0,
         y: 100,
@@ -214,7 +214,7 @@ const homeAnimationTopSmall = () => {
     )
     .addLabel("h1Show")
     .fromTo(
-      ".info-section h4",
+      ".mobile-header-and-info-section-outer-container .info-section h4",
       {
         x: -50,
         opacity: 0
@@ -227,7 +227,7 @@ const homeAnimationTopSmall = () => {
       "h1Show"
     )
     .fromTo(
-      ".call-actions",
+      ".mobile-header-and-info-section-outer-container .call-actions",
       {
         x: -50,
         opacity: 0
@@ -425,7 +425,7 @@ const scrollAnimationMiddleOn = (homeController) => {
       x: "-100%"
     },
     {
-      x: "20px"
+      x: "-20px"
     }
   );
 
@@ -435,7 +435,7 @@ const scrollAnimationMiddleOn = (homeController) => {
       x: "310px"
     },
     {
-      x: "80px"
+      x: "30px"
     }
   );
 
@@ -470,33 +470,6 @@ const scrollAnimationMiddleOn = (homeController) => {
       opacity: 0.6
     }
   );
-
-  // .fromTo(
-  //   ".shape3",
-  //   {
-  //     y: 350
-  //   },
-  //   {
-  //     y: 380
-  //     // repeat: -1,
-  //     // duration: 1.5,
-  //     // ease: "sine.inOut",
-  //     // yoyo: true
-  //   }
-  // )
-  // .fromTo(
-  //   ".shape2",
-  //   {
-  //     y: 130
-  //   },
-  //   {
-  //     y: 100
-  //     // repeat: -1,
-  //     // duration: 1.5,
-  //     // ease: "sine.inOut",
-  //     // yoyo: true
-  //   }
-  // );
 
   let girlScene = new ScrollMagic.Scene({
     triggerElement: "#home .photos",
@@ -593,23 +566,26 @@ const scrollAnimationBottomOn = (homeController) => {
     onUpdate: debugPercentage
   });
 
-  tlServicesInnerElementsScroll.fromTo(
+  tlServicesInnerElementsScroll.staggerFromTo(
     "#main-services .services .service",
+    2,
     {
-      y: 300,
+      x: window.innerWidth > 767 ? 0 : 300,
+      y: window.innerWidth > 767 ? 300 : 0,
       opacity: 0
     },
     {
+      x: 0,
       y: 0,
-      opacity: 1,
-      stagger: 0.4
-    }
+      opacity: 1
+    },
+    0.4
   );
 
   let serviceScene = new ScrollMagic.Scene({
     triggerElement: "#main-services",
     triggerHook: 1,
-    duration: window.innerWidth > 767 ? 500 : 568
+    duration: window.innerWidth > 767 ? 500 : 200
   })
     .setTween(tlServicesScroll)
     // .addIndicators()
@@ -619,7 +595,7 @@ const scrollAnimationBottomOn = (homeController) => {
     triggerElement: "#main-services",
     triggerHook: 1,
     offset: window.innerWidth > 767 ? 450 : 100,
-    duration: 450
+    duration: window.innerWidth > 767 ? 300 : 400
   })
     .setTween(tlServicesInnerElementsScroll)
     // .addIndicators()
