@@ -32,6 +32,38 @@ const headerAnimation = () => {
     );
 };
 
+const mobileHeaderAnimation = () => {
+  let timeline = gsap.timeline();
+  timeline
+    .fromTo(
+      ".mobile-logo",
+      {
+        x: -200,
+        opacity: 0
+      },
+      {
+        x: 0,
+        opacity: 1,
+        delay: 0.5,
+        duration: 1.3
+      }
+    )
+    .fromTo(
+      ".mobile-menu",
+      {
+        x: 200,
+        opacity: 0
+      },
+      {
+        x: 0,
+        opacity: 1,
+        delay: 0.5,
+        duration: 1.3
+      },
+      ">-1.8"
+    );
+};
+
 const homeAnimationFullLarge = () => {
   let timeline = gsap.timeline();
   timeline
@@ -340,26 +372,28 @@ const loadingEnterHomeSmall = () => {
       ".mobile-header-and-info-section-container",
       {
         scale: 0.5,
-        height: "100%",
-        backgroundImage:
-          "linear-gradient(to right top, #8e27ff, #7b21fa, #651bf5, #4b16f0, #2512eb)"
+        height: "100%"
+        // backgroundImage:
+        //   "linear-gradient(to right top, #8e27ff, #7b21fa, #651bf5, #4b16f0, #2512eb)"
+        // background: "transparent"
       },
       {
-        scale: 1
+        scale: 1,
+        duration: 0.4
       }
-    )
-    .fromTo(
-      ".mobile-header-and-info-section-outer-container",
-      {
-        background: "white"
-      },
-      {
-        background: "transparent"
-      }
-    )
-    .to(".mobile-header-and-info-section-container", {
-      backgroundImage: "none"
-    });
+    );
+  // .fromTo(
+  //   ".mobile-header-and-info-section-outer-container",
+  //   {
+  //     background: "white"
+  //   },
+  //   {
+  //     background: "transparent"
+  //   }
+  // )
+  // .to(".mobile-header-and-info-section-container", {
+  //   backgroundImage: "none"
+  // });
 };
 
 const galleryEnter = () => {
@@ -629,10 +663,18 @@ barba.init({
       },
       async enter(data) {
         loadingEnter();
-        headerAnimation();
+        if (window.innerWidth >= 768) {
+          headerAnimation();
+        } else {
+          mobileHeaderAnimation();
+        }
       },
       async once(data) {
-        headerAnimation();
+        if (window.innerWidth >= 768) {
+          headerAnimation();
+        } else {
+          mobileHeaderAnimation();
+        }
       }
     },
     {
@@ -651,7 +693,11 @@ barba.init({
       },
       async enter(data) {
         loadingEnter();
-        headerAnimation();
+        if (window.innerWidth >= 768) {
+          headerAnimation();
+        } else {
+          mobileHeaderAnimation();
+        }
         galleryEnter();
       }
     }

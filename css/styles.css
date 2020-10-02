@@ -290,6 +290,14 @@ header .menu li a {
   align-items: center;
 }
 
+.mobile-header {
+  display: none;
+}
+
+/* #about .content-area .mobile-header {
+  display: none;
+} */
+
 #about .info-section h1 {
   font-size: 5rem;
   font-weight: 900;
@@ -300,6 +308,10 @@ header .menu li a {
   min-height: calc(100vh - 90px);
   padding-bottom: 50px;
 }
+
+/* #gallery .content-area .mobile-header {
+  display: none;
+} */
 
 #gallery .white-bg {
   background: white;
@@ -508,6 +520,28 @@ header .menu li a {
     max-width: 100%;
   }
 
+  .mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+  }
+
+  .mobile-header .mobile-logo a {
+    padding: 15px;
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: white;
+    text-decoration: none;
+  }
+
+  .mobile-header .mobile-menu .fas {
+    padding: 15px;
+    font-size: 1.5rem;
+    color: white;
+  }
+
   #home {
     padding-bottom: 0;
   }
@@ -528,6 +562,10 @@ header .menu li a {
     z-index: 40;
     /* background: white; */
     height: 100vh;
+    background: white;
+    mix-blend-mode: hard-light;
+    /* -webkit-backface-visibility: visible;
+    backface-visibility: visible; */
   }
 
   /* #home .info-section { */
@@ -547,6 +585,8 @@ header .menu li a {
         #651bf5,
         #4b16f0,
         #2512eb); */
+    /* mix-blend-mode: hard-light; */
+    background: gray;
   }
 
   #home .mobile-header-and-info-section-container .mobile-header {
@@ -701,13 +741,38 @@ header .menu li a {
   }
 
   #about .content-area {
+    flex-direction: column;
+    /* height: calc(100vh - 50px); */
+    height: 100vh;
+  }
+
+  /* #about .content-area .mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+  } */
+
+  #about .content-area .info-section-only-container {
     height: calc(100vh - 50px);
+    display: flex;
+    align-items: center;
   }
 
   #gallery .content-area {
-    min-height: calc(100vh - 90px);
+    /* min-height: calc(100vh - 90px); */
+    min-height: 100vh;
     padding-bottom: 50px;
   }
+
+  /* #gallery .content-area .mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+  } */
 
   #gallery .white-bg {
     background: white;
