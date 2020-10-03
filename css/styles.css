@@ -294,6 +294,10 @@ header .menu li a {
   display: none;
 }
 
+.mobile-menu {
+  display: none;
+}
+
 /* #about .content-area .mobile-header {
   display: none;
 } */
@@ -536,10 +540,30 @@ header .menu li a {
     text-decoration: none;
   }
 
-  .mobile-header .mobile-menu .fas {
+  .mobile-header .mobile-menu-btn .fas {
     padding: 15px;
     font-size: 1.5rem;
     color: white;
+  }
+
+  .mobile-menu.active {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100vh - 50px);
+    background: yellow;
+  }
+
+  .mobile-menu a {
+    color: blue;
+    text-decoration: none;
+    font-size: 1.4rem;
+    padding-top: 1rem;
+    padding-left: 2rem;
   }
 
   #home {
@@ -827,5 +851,11 @@ header .menu li a {
     /**/
     object-fit: cover;
     object-position: center;
+  }
+
+  .gallery-mobile-menu-btn {
+    height: 50px;
+    width: 50px;
+    background: red;
   }
 }

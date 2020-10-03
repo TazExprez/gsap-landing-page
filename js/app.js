@@ -1,3 +1,38 @@
+let mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+let mobileMenu = document.querySelector(".mobile-menu");
+let outerContainer = document.querySelector(".outer-container");
+let mainContainer = document.querySelector("main");
+
+console.log(mobileMenuBtn);
+console.log(mobileMenu);
+console.log(outerContainer);
+
+const clickedMobileMenuBtn = () => {
+  mobileMenu.classList.toggle("active");
+};
+
+// mobileMenuBtn.addEventListener("click", clickedMobileMenuBtn);
+
+// const addMobileMenuBtnEvent = () => {
+//   mobileMenuBtn.addEventListener("click", clickedMobileMenuBtn);
+// };
+
+const removeMobileMenuBtnEvent = () => {
+  mobileMenuBtn.removeEventListener("click", clickedMobileMenuBtn);
+};
+
+const addMobileMenuBtnEvent = () => {
+  outerContainer.addEventListener("click", (e) => {
+    // if (e.target && e.target.className === "mobile-menu-btn") {
+    if (e.target.className === "mobile-menu-btn") {
+      // e.preventDefault();
+      // clickedMobileMenuBtn();
+      // mobileMenu.classList.toggle("active");
+      console.log("Clicked Menu Button!");
+    }
+  });
+};
+
 // Page Transition Animations
 
 const headerAnimation = () => {
@@ -49,7 +84,7 @@ const mobileHeaderAnimation = () => {
       }
     )
     .fromTo(
-      ".mobile-menu",
+      ".mobile-menu-btn",
       {
         x: 200,
         opacity: 0
@@ -650,6 +685,10 @@ function debounce(func, time) {
   };
 }
 
+barba.hooks.afterEnter(() => {
+  addMobileMenuBtnEvent();
+});
+
 barba.init({
   sync: true,
   transitions: [
@@ -658,6 +697,7 @@ barba.init({
       async leave(data) {
         const done = this.async();
         loadingLeave();
+        // removeMobileMenuBtnEvent();
         await delay(1500);
         done();
       },
@@ -667,6 +707,10 @@ barba.init({
           headerAnimation();
         } else {
           mobileHeaderAnimation();
+          // if (mobileMenuBtn !== null) {
+          // addMobileMenuBtnEvent();
+          // }
+          setTimeout(addMobileMenuBtnEvent, 10);
         }
       },
       async once(data) {
@@ -674,6 +718,24 @@ barba.init({
           headerAnimation();
         } else {
           mobileHeaderAnimation();
+          // if (mobileMenuBtn !== null) {
+          //   addMobileMenuBtnEvent();
+          // }
+          setTimeout(addMobileMenuBtnEvent, 10);
+        }
+      },
+
+      before: ({ current, next, trigger }) => {
+        // get the menu element
+        let menu = document.querySelector(".mobile-menu-btn");
+
+        // select the menu item depending on the next URL (you can do that in many ways)
+        let nextItem = menu.querySelector(`a[href="${next.url.href}"]`);
+
+        // reset the active menu item and set the next item as "active" (if there is one)
+        if (nextItem !== null) {
+          menu.querySelector(".mobile-menu").classList.remove("active");
+          nextItem.classList.add("active");
         }
       }
     },
@@ -688,6 +750,7 @@ barba.init({
       async leave(data) {
         const done = this.async();
         loadingLeave();
+        removeMobileMenuBtnEvent();
         await delay(1500);
         done();
       },
@@ -697,8 +760,13 @@ barba.init({
           headerAnimation();
         } else {
           mobileHeaderAnimation();
+          galleryEnter();
+
+          // if (mobileMenuBtn !== null) {
+          addMobileMenuBtnEvent();
+          // }
         }
-        galleryEnter();
+        // galleryEnter();
       }
     }
   ],
@@ -731,6 +799,10 @@ barba.init({
           };
           setTimeout(createScrollEffect, 10);
         }
+        // if (mobileMenuBtn !== null) {
+        // setTimeout(addMobileMenuBtnEvent, 10);
+        // }
+        addMobileMenuBtnEvent();
       },
 
       beforeLeave(data) {
@@ -739,6 +811,7 @@ barba.init({
           scrollAnimationOff(homeController);
         };
         setTimeout(destroyScrollEffect, 10);
+        // removeMobileMenuBtnEvent();
       }
     },
     {
@@ -747,6 +820,13 @@ barba.init({
         loadingEnter();
         aboutAnimation();
         window.addEventListener("resize", debounce(resizeScreen, 700));
+        // if (mobileMenuBtn !== null) {
+        // setTimeout(addMobileMenuBtnEvent, 10);
+        // }
+        addMobileMenuBtnEvent();
+      },
+      beforeLeave(data) {
+        // removeMobileMenuBtnEvent();
       }
     },
     {
@@ -755,7 +835,31 @@ barba.init({
         loadingEnter();
         galleryEnter();
         window.addEventListener("resize", debounce(resizeScreen, 700));
+        // if (mobileMenuBtn !== null) {
+        setTimeout(addMobileMenuBtnEvent, 10);
+        // }
+        // addMobileMenuBtnEvent();
+      },
+      beforeLeave(data) {
+        // removeMobileMenuBtnEvent();
       }
     }
   ]
 });
+
+// barba.dispatcher.on("transitionCompleted", function (
+//   currentStatus,
+//   prevStatus
+// ) {
+//   mobileMenuBtn.addEventListener(
+//     "load",
+//     function (e) {
+//       console.log(e.currentTarget);
+//     },
+//     true
+//   );
+// });
+
+// barba.hooks.enter((data) => {
+//   addMobileMenuBtnEvent();
+// });
