@@ -51,26 +51,26 @@ header {
   margin: 0 auto;
 }
 
-header .logo {
+header .large-logo {
   font-weight: 700;
 }
 
-header .logo a {
+header .large-logo a {
   color: white;
   text-decoration: none;
 }
 
-header .menu ul {
+header .large-menu ul {
   display: flex;
 }
 
-header .menu ul li {
+header .large-menu ul li {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-header .menu li a {
+header .large-menu li a {
   font-size: 0.8rem;
   color: white;
   text-decoration: none;
@@ -665,7 +665,7 @@ header .menu li a {
     }
   }
 
-  .moveShape2 {
+  .shape2.moveShape {
     animation: moveShape2 2s ease-in-out infinite alternate;
   }
 
@@ -685,7 +685,7 @@ header .menu li a {
     }
   }
 
-  .moveShape3 {
+  .shape3.moveShape {
     animation: moveShape3 2s ease-in-out infinite alternate;
   }
 
