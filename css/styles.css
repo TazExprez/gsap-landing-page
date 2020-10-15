@@ -132,7 +132,9 @@ header .large-menu li a {
 }
 
 #home .content-area {
-  height: 100vh;
+  /* height: 100vh; */
+  min-height: 600px;
+  height: calc(100vh - 90px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -144,6 +146,13 @@ header .large-menu li a {
 
 #home .mobile-device-info-section-container {
   display: none;
+}
+
+#home .larger-than-mobile-device-info-section-container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 50%;
 }
 
 #home .info-section {
@@ -201,15 +210,19 @@ header .large-menu li a {
 #home .photos {
   width: 50%;
   position: relative;
-  height: 400px;
+  /* height: 400px; */
+  height: 100%;
 }
 
 #home .photos .girl {
   position: absolute;
-  width: 380px;
+  width: 60%;
   height: 0;
   z-index: 1;
-  transform: translate3d(0, -200px, 0);
+  /* top: -20%; */
+  top: 10%;
+  /* transform: translate3d(0, -20%, 0); */
+  /* transform: translate3d(0, -20%, 0); */
   object-fit: cover;
   object-position: top;
   transition: filter 0.4s ease-in-out;
@@ -218,10 +231,11 @@ header .large-menu li a {
 
 #home .photos .boy {
   position: absolute;
-  width: 380px;
+  width: 60%;
   height: 0;
+  bottom: 10%;
   z-index: 2;
-  transform: translate3d(270px, 100px, 0);
+  transform: translateX(66%);
   object-fit: cover;
   object-position: top;
   transition: filter 0.4s ease-in-out;
@@ -235,8 +249,8 @@ header .large-menu li a {
 
 .shape1 {
   position: absolute;
-  width: 450px;
-  height: 500px;
+  width: 55%;
+  height: 38%;
   border: 2px dashed white;
   transform: translate3d(100px, 0, 0);
 }
@@ -246,9 +260,9 @@ header .large-menu li a {
   border: 2px dashed white;
   background-color: white;
   position: absolute;
-  width: 100px;
-  height: 100px;
-  transform: translate3d(600px, -300px, 0);
+  width: 6rem;
+  height: 6rem;
+  /* transform: translate3d(600px, -300px, 0); */
   border: 1px dashed white;
   clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
 }
@@ -258,9 +272,9 @@ header .large-menu li a {
   border: 2px dashed white;
   background-color: white;
   position: absolute;
-  width: 100px;
-  height: 100px;
-  transform: translate3d(0px, 300px, 0);
+  width: 6rem;
+  height: 6rem;
+  /* transform: translate3d(0px, 300px, 0); */
   border: 1px dashed white;
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
@@ -401,20 +415,6 @@ header .large-menu li a {
     font-size: 3rem;
   }
 
-  #home .photos .girl {
-    width: 300px;
-  }
-
-  #home .photos .boy {
-    width: 300px;
-    transform: translate3d(200px, 100px, 0);
-  }
-
-  .shape1 {
-    width: 300px;
-    height: 400px;
-  }
-
   /* Scroll Sections */
 
   #main-services .services {
@@ -433,15 +433,6 @@ header .large-menu li a {
 
   #home .info-section h1 {
     font-size: 2.6rem;
-  }
-
-  #home .photos .girl {
-    width: 270px;
-  }
-
-  #home .photos .boy {
-    width: 270px;
-    transform: translate3d(130px, 100px, 0);
   }
 
   /* Scroll Sections */
@@ -490,21 +481,7 @@ header .large-menu li a {
   #home .photos {
     width: 50%;
     position: relative;
-    height: 400px;
-  }
-
-  #home .photos .girl {
-    width: 220px;
-  }
-
-  #home .photos .boy {
-    width: 220px;
-    transform: translate3d(130px, 100px, 0);
-  }
-
-  .shape1 {
-    width: 250px;
-    height: 400px;
+    /* height: 400px; */
   }
 
   /* Scroll Sections */
@@ -569,7 +546,6 @@ header .large-menu li a {
   }
 
   #home .content-area {
-    /* height: calc(200vh - 50px); */
     height: 200vh;
     flex-direction: column;
     justify-content: space-between;
@@ -631,37 +607,25 @@ header .large-menu li a {
     height: 50%;
   }
 
-  #home .photos .girl {
-    height: 313px;
-    width: 180px;
-    transform: translate3d(-20px, -105px, 0);
-  }
-
-  #home .photos .boy {
-    height: 313px;
-    width: 180px;
-    transform: translate3d(30px, 110px, 0);
-  }
-
   .shape1 {
     width: 185px;
     height: 175px;
-    transform: translate3d(5px, 3px, 0);
+    /* transform: translate3d(5px, 3px, 0); */
   }
 
   .shape2 {
     width: 45px;
     height: 45px;
-    transform: translate3d(120px, -150px, 0);
+    /* transform: translate3d(120px, -150px, 0); */
   }
 
   @keyframes moveShape2 {
     0% {
-      transform: translate3d(120px, -150px, 0);
+      transform: translate3d(0, -150px, 0);
     }
 
     100% {
-      transform: translate3d(120px, -120px, 0);
+      transform: translate3d(0, -120px, 0);
     }
   }
 
@@ -672,16 +636,16 @@ header .large-menu li a {
   .shape3 {
     width: 45px;
     height: 45px;
-    transform: translate3d(-110px, 130px, 0);
+    /* transform: translate3d(-110px, 130px, 0); */
   }
 
   @keyframes moveShape3 {
     0% {
-      transform: translate3d(-110px, 130px, 0);
+      transform: translate3d(0, 130px, 0);
     }
 
     100% {
-      transform: translate3d(-110px, 160px, 0);
+      transform: translate3d(0, 160px, 0);
     }
   }
 
