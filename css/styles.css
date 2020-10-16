@@ -132,7 +132,6 @@ header .large-menu li a {
 }
 
 #home .content-area {
-  /* height: 100vh; */
   min-height: 600px;
   height: calc(100vh - 90px);
   display: flex;
@@ -144,11 +143,7 @@ header .large-menu li a {
   display: none;
 }
 
-#home .mobile-device-info-section-container {
-  display: none;
-}
-
-#home .larger-than-mobile-device-info-section-container {
+#home .info-section-container {
   display: flex;
   align-items: center;
   height: 100%;
@@ -156,7 +151,7 @@ header .large-menu li a {
 }
 
 #home .info-section {
-  width: 50%;
+  width: 100%;
 }
 
 #home .info-section h1 {
@@ -210,7 +205,6 @@ header .large-menu li a {
 #home .photos {
   width: 50%;
   position: relative;
-  /* height: 400px; */
   height: 100%;
 }
 
@@ -219,10 +213,7 @@ header .large-menu li a {
   width: 60%;
   height: 0;
   z-index: 1;
-  /* top: -20%; */
   top: 10%;
-  /* transform: translate3d(0, -20%, 0); */
-  /* transform: translate3d(0, -20%, 0); */
   object-fit: cover;
   object-position: top;
   transition: filter 0.4s ease-in-out;
@@ -234,8 +225,8 @@ header .large-menu li a {
   width: 60%;
   height: 0;
   bottom: 10%;
+  left: 40%;
   z-index: 2;
-  transform: translateX(66%);
   object-fit: cover;
   object-position: top;
   transition: filter 0.4s ease-in-out;
@@ -249,20 +240,21 @@ header .large-menu li a {
 
 .shape1 {
   position: absolute;
+  top: 28%;
+  left: 22%;
   width: 55%;
-  height: 38%;
+  height: 44%;
   border: 2px dashed white;
-  transform: translate3d(100px, 0, 0);
 }
 
 .shape2 {
   opacity: 0.3;
-  border: 2px dashed white;
   background-color: white;
   position: absolute;
-  width: 6rem;
-  height: 6rem;
-  /* transform: translate3d(600px, -300px, 0); */
+  top: 10%;
+  right: 0;
+  width: 17%;
+  padding-top: 17%;
   border: 1px dashed white;
   clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
 }
@@ -272,9 +264,10 @@ header .large-menu li a {
   border: 2px dashed white;
   background-color: white;
   position: absolute;
-  width: 6rem;
-  height: 6rem;
-  /* transform: translate3d(0px, 300px, 0); */
+  bottom: 10%;
+  left: -8%;
+  width: 17%;
+  padding-top: 17%;
   border: 1px dashed white;
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
@@ -481,7 +474,6 @@ header .large-menu li a {
   #home .photos {
     width: 50%;
     position: relative;
-    /* height: 400px; */
   }
 
   /* Scroll Sections */
@@ -551,10 +543,6 @@ header .large-menu li a {
     justify-content: space-between;
   }
 
-  #home .content-area .larger-than-mobile-device-info-section-container {
-    display: none;
-  }
-
   #home .mobile-header {
     display: flex;
     justify-content: space-between;
@@ -563,7 +551,7 @@ header .large-menu li a {
     width: 100%;
   }
 
-  #home .mobile-device-info-section-container {
+  #home .info-section-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -571,20 +559,20 @@ header .large-menu li a {
     width: 100%;
   }
 
-  #home .mobile-device-info-section-container .info-section {
-    width: 100%;
+  #home .info-section-container .info-section {
+    width: 90%;
   }
 
-  #home .mobile-device-info-section-container .info-section h1 {
+  #home .info-section-container .info-section h1 {
     font-size: 2.6rem;
     text-align: center;
   }
 
-  #home .mobile-device-info-section-container .info-section h4 {
+  #home .info-section-container .info-section h4 {
     text-align: center;
   }
 
-  #home .mobile-device-info-section-container .info-section .call-actions {
+  #home .info-section-container .info-section .call-actions {
     justify-content: center;
   }
 
@@ -604,19 +592,29 @@ header .large-menu li a {
     justify-content: center;
     align-items: center;
     width: 100%;
+    height: 100vh;
+  }
+
+  #home .photos .girl {
+    left: 10%;
     height: 50%;
+    width: 45%;
+  }
+
+  #home .photos .boy {
+    left: 46%;
+    height: 50%;
+    width: 45%;
   }
 
   .shape1 {
-    width: 185px;
-    height: 175px;
-    /* transform: translate3d(5px, 3px, 0); */
+    left: 31%;
+    width: 40%;
+    height: 44%;
   }
 
   .shape2 {
-    width: 45px;
-    height: 45px;
-    /* transform: translate3d(120px, -150px, 0); */
+    right: 10%;
   }
 
   @keyframes moveShape2 {
@@ -634,9 +632,7 @@ header .large-menu li a {
   }
 
   .shape3 {
-    width: 45px;
-    height: 45px;
-    /* transform: translate3d(-110px, 130px, 0); */
+    left: 10%;
   }
 
   @keyframes moveShape3 {

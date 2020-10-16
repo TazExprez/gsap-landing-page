@@ -49,14 +49,14 @@ const headerAnimation = () => {
     );
 };
 
-// let homeAnimationFullLargeTimeline = gsap.timeline();
-
 let homeAnimationTimeline = gsap.timeline();
 
-const homeAnimation = () => {
+const homeAnimationLarge = () => {
+  homeAnimationTimeline.clear();
+
   homeAnimationTimeline
   .fromTo(
-    ".larger-than-mobile-device-info-section-container .info-section h1",
+    ".info-section-container .info-section h1",
     {
       y: 100,
       opacity: 0
@@ -99,8 +99,6 @@ const homeAnimation = () => {
       opacity: 0
     },
     {
-      x: "41%",
-      y: "79%",
       scale: 1,
       opacity: 1,
       ease: "power2.inOut"
@@ -122,11 +120,10 @@ const homeAnimation = () => {
   .fromTo(
     ".shape3",
     {
-      x: "-50%",
-      bottom: 0
+      y: 0
     },
     {
-      bottom: "10%",
+      y: "-40%",
       // repeat: -1,
       duration: 1.5,
       ease: "sine.inOut",
@@ -148,11 +145,10 @@ const homeAnimation = () => {
   .fromTo(
     ".shape2",
     {
-      right: 0,
-      y: "162%"
+      y: 0
     },
     {
-      y: "102%",
+      y: "40%",
       // repeat: -1,
       duration: 1.5,
       ease: "sine.inOut",
@@ -160,7 +156,7 @@ const homeAnimation = () => {
     }
   )
   .fromTo(
-    ".larger-than-mobile-device-info-section-container .info-section h4",
+    ".info-section-container .info-section h4",
     {
       x: -50,
       opacity: 0
@@ -173,7 +169,7 @@ const homeAnimation = () => {
     "h1Show"
   )
   .fromTo(
-    ".larger-than-mobile-device-info-section-container .call-actions",
+    ".info-section-container .call-actions",
     {
       x: -50,
       opacity: 0
@@ -185,190 +181,52 @@ const homeAnimation = () => {
     },
     "h1Show+=1"
   );
-
-
 };
 
-// const homeAnimationFullLarge = () => {
-  // let timeline = gsap.timeline();
-  // timeline
+const homeAnimationMobile = () => {
+  homeAnimationTimeline.clear();
 
-  // homeAnimationTimeline.progress(0);
-  // homeAnimationTimeline.stop();
-
-
-  // homeAnimationFullLargeTimeline
-    // .fromTo(
-    //   ".larger-than-mobile-device-info-section-container .info-section h1",
-    //   {
-    //     x: 0,
-    //     y: 100,
-    //     opacity: 0
-    //   },
-    //   {
-    //     x: 0,
-    //     y: 0,
-    //     opacity: 1,
-    //     duration: 1.3
-    //   }
-    // )
-    // .addLabel("h1Show")
-    // .fromTo(
-    //   ".girl",
-    //   {
-    //     x: 0,
-    //     y: "-200px",
-    //     height: 0,
-    //     width:
-    //       window.innerWidth >= 1450
-    //         ? 380
-    //         : window.innerWidth <= 1449 && window.innerWidth >= 1200
-    //         ? 300
-    //         : window.innerWidth <= 1199 && window.innerWidth >= 1024
-    //         ? 270
-    //         : 220
-    //   },
-    //   {
-    //     height: window.innerWidth >= 1450 ? 600 : 500,
-    //     duration: 1.4,
-    //     ease: "power2.inOut"
-    //   },
-    //   ">-0.5"
-    // )
-    // .fromTo(
-    //   ".boy",
-    //   {
-    //     x:
-    //       window.innerWidth >= 1450
-    //         ? "270px"
-    //         : window.innerWidth <= 1449 && window.innerWidth >= 1200
-    //         ? "200px"
-    //         : "130px",
-    //     y: "100px",
-    //     height: 0,
-    //     width:
-    //       window.innerWidth >= 1450
-    //         ? 380
-    //         : window.innerWidth <= 1449 && window.innerWidth >= 1200
-    //         ? 300
-    //         : window.innerWidth <= 1199 && window.innerWidth >= 1024
-    //         ? 270
-    //         : 220
-    //   },
-    //   {
-    //     height: window.innerWidth >= 1450 ? 600 : 500,
-    //     duration: 1.4,
-    //     ease: "power2.inOut"
-    //   },
-    //   ">-1"
-    // )
-    // .fromTo(
-    //   ".shape1",
-    //   {
-    //     scale: 0,
-    //     opacity: 0
-    //   },
-    //   {
-    //     x: window.innerWidth < 1200 ? 50 : 100,
-    //     y: window.innerWidth < 768 ? 184 : 0,
-    //     scale: 1,
-    //     opacity: 1,
-    //     ease: "power2.inOut"
-    //   },
-    //   ">-1"
-    // )
-    // .fromTo(
-    //   ".shape3",
-    //   {
-    //     opacity: 0
-    //   },
-    //   {
-    //     opacity: 0.6,
-    //     ease: "power2.inOut",
-    //     duration: 1
-    //   },
-    //   ">-0.2"
-    // )
-    // .fromTo(
-    //   ".shape3",
-    //   {
-    //     x: window.innerWidth >= 1024 ? -50 : 0,
-    //     y: window.innerWidth >= 768 ? 500 : 350
-    //   },
-    //   {
-    //     y: window.innerWidth >= 768 ? 465 : 380,
-    //     repeat: -1,
-    //     duration: 1.5,
-    //     ease: "sine.inOut",
-    //     yoyo: true
-    //   }
-    // )
-    // .fromTo(
-    //   ".shape2",
-    //   {
-    //     opacity: 0
-    //   },
-    //   {
-    //     opacity: 0.3,
-    //     ease: "power2.inOut",
-    //     duration: 1
-    //   },
-    //   ">-2"
-    // )
-    // .fromTo(
-    //   ".shape2",
-    //   {
-    //     x:
-    //       window.innerWidth >= 1450
-    //         ? 600
-    //         : window.innerWidth < 1450 && window.innerWidth >= 1200
-    //         ? 450
-    //         : window.innerWidth < 1200 && window.innerWidth >= 1024
-    //         ? 350
-    //         : window.innerWidth < 1024 && window.innerWidth >= 768
-    //         ? 250
-    //         : 243,
-    //     y: window.innerWidth >= 768 ? -150 : 130
-    //   },
-    //   {
-    //     y: window.innerWidth >= 768 ? -185 : 100,
-    //     repeat: -1,
-    //     duration: 1.5,
-    //     ease: "sine.inOut",
-    //     yoyo: true
-    //   }
-    // )
-    // .fromTo(
-    //   ".larger-than-mobile-device-info-section-container .info-section h4",
-    //   {
-    //     x: -50,
-    //     opacity: 0
-    //   },
-    //   {
-    //     x: 0,
-    //     opacity: 1,
-    //     duration: 1.3
-    //   },
-    //   "h1Show"
-    // )
-    // .fromTo(
-    //   ".larger-than-mobile-device-info-section-container .call-actions",
-    //   {
-    //     x: -50,
-    //     opacity: 0
-    //   },
-    //   {
-    //     x: 0,
-    //     opacity: 1,
-    //     duration: 1.3
-    //   },
-    //   "h1Show+=1"
-    // );
-    // .progress(0);
-
-  // timeline.seek(0).clear();
-  // timeline.seek(0);
-// };
+  homeAnimationTimeline
+  .fromTo(
+    ".info-section-container .info-section h1",
+    {
+      y: 100,
+      opacity: 0
+    },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 1.3
+    }
+  )
+  .addLabel("h1Show")
+  .fromTo(
+    ".info-section-container .info-section h4",
+    {
+      x: -50,
+      opacity: 0
+    },
+    {
+      x: 0,
+      opacity: 1,
+      duration: 1.3
+    },
+    "h1Show"
+  )
+  .fromTo(
+    ".info-section-container .call-actions",
+    {
+      x: -50,
+      opacity: 0
+    },
+    {
+      x: 0,
+      opacity: 1,
+      duration: 1.3
+    },
+    "h1Show+=1"
+  );
+};
 
 // let homeAnimationTopSmallTimeline = gsap.timeline();
 
@@ -884,13 +742,12 @@ barba.init({
         };
 
         if (window.innerWidth >= 768) {
-          homeAnimation();
-          // homeAnimationFullLarge();
+          homeAnimationLarge();
           // homeAnimationFullLargeTimeline.play();
           setTimeout(createScrollEffectLarge, 10);
         } else {
-          // homeAnimationTopSmall();
-          homeAnimationTopSmallTimeline.play();
+          homeAnimationMobile();
+          // homeAnimationTopSmallTimeline.play();
           setTimeout(createScrollEffectMobile, 10);
         }
 
