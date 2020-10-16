@@ -228,165 +228,6 @@ const homeAnimationMobile = () => {
   );
 };
 
-// let homeAnimationTopSmallTimeline = gsap.timeline();
-
-// const homeAnimationTopSmall = () => {
-  // let timeline = gsap.timeline();
-  // timeline
-
-  // homeAnimationTimeline.progress(0);
-
-  // homeAnimationTimeline
-  // homeAnimationTopSmallTimeline
-  //   .fromTo(
-  //     ".mobile-device-info-section-container .info-section h1",
-  //     {
-  //       x: 0,
-  //       y: 100,
-  //       opacity: 0
-  //     },
-  //     {
-  //       x: 0,
-  //       y: 0,
-  //       opacity: 1,
-  //       duration: 1.3
-  //     }
-  //   )
-  //   .addLabel("h1Show")
-  //   .fromTo(
-  //     ".mobile-device-info-section-container .info-section h4",
-  //     {
-  //       x: -50,
-  //       opacity: 0
-  //     },
-  //     {
-  //       x: 0,
-  //       opacity: 1,
-  //       duration: 1.3
-  //     },
-  //     "h1Show"
-  //   )
-  //   .fromTo(
-  //     ".mobile-device-info-section-container .call-actions",
-  //     {
-  //       x: -50,
-  //       opacity: 0
-  //     },
-  //     {
-  //       x: 0,
-  //       opacity: 1,
-  //       duration: 1.3
-  //     },
-  //     "h1Show+=1"
-  //   );
-  
-  
-  
-  
-  
-  // homeAnimationTopSmallTimeline
-  //   .fromTo(
-  //     ".mobile-device-info-section-container .info-section h1",
-  //     {
-  //       x: 0,
-  //       y: 100,
-  //       opacity: 0
-  //     },
-  //     {
-  //       x: 0,
-  //       y: 0,
-  //       opacity: 1,
-  //       duration: 1.3
-  //     }
-  //   )
-  //   .addLabel("h1Show")
-  //   .fromTo(
-  //     ".mobile-device-info-section-container .info-section h4",
-  //     {
-  //       x: -50,
-  //       opacity: 0
-  //     },
-  //     {
-  //       x: 0,
-  //       opacity: 1,
-  //       duration: 1.3
-  //     },
-  //     "h1Show"
-  //   )
-  //   .fromTo(
-  //     ".mobile-device-info-section-container .call-actions",
-  //     {
-  //       x: -50,
-  //       opacity: 0
-  //     },
-  //     {
-  //       x: 0,
-  //       opacity: 1,
-  //       duration: 1.3
-  //     },
-  //     "h1Show+=1"
-  //   );
-    
-    
-    
-    
-    // .fromTo(
-    //   ".girl",
-    //   {
-    //     x: "-100%",
-    //     y: "-105px",
-    //     height: "313px",
-    //     width: "180px"
-    //   },
-    //   {
-    //     x: "-20px"
-    //   }
-    // )
-    // .fromTo(
-    //   ".boy",
-    //   {
-    //     x: "310px",
-    //     y: "110px",
-    //     height: "313px",
-    //     width: "180px"
-    //   },
-    //   {
-    //     x: "30px"
-    //   }
-    // )
-    // .fromTo(
-    //   ".shape1",
-    //   {
-    //     x: "5px",
-    //     y: "3px",
-    //     scale: 0,
-    //     opacity: 0
-    //   },
-    //   {
-    //     scale: 1,
-    //     opacity: 1
-    //   }
-    // )
-    // .fromTo(
-    //   ".shape2",
-    //   {
-    //     opacity: 0
-    //   },
-    //   {
-    //     opacity: 0.3
-    //   }
-    // )
-    // .fromTo(
-    //   ".shape3",
-    //   {
-    //     opacity: 0
-    //   },
-    //   {
-    //     opacity: 0.6
-    //   }
-    // );
-// };
-
 const aboutAnimation = () => {
   let timeline = gsap.timeline();
   timeline.fromTo(
@@ -521,32 +362,24 @@ const scrollAnimationMiddleOn = (homeController) => {
     .fromTo(
       ".girl",
       {
-        x: "-100%",
-        y: "-105px",
-        height: "313px",
-        width: "180px"
+        x: "-100%"
       },
       {
-        x: "-20px"
+        x: 0
       }
     )
     .fromTo(
       ".boy",
       {
-        x: "310px",
-        y: "110px",
-        height: "313px",
-        width: "180px"
+        x: "100%"
       },
       {
-        x: "30px"
+        x: 0
       }
     )
     .fromTo(
       ".shape1",
       {
-        x: "5px",
-        y: "3px",
         scale: 0,
         opacity: 0
       },
@@ -668,21 +501,15 @@ const resizeScreen = () => {
 };
 
 const resizeHomeScreen = () => {
-  // homeAnimationFullLargeTimeline.pause(0);
-  // homeAnimationTopSmallTimeline.pause(0);
+  homeAnimationTimeline.clear();
   scrollAnimationOff(homeController);
 
   if(window.innerWidth >= 768) {
-    // homeAnimationFullLargeTimeline.pause(0);
-    // homeAnimationTopSmallTimeline.pause(0);
-    // scrollAnimationOff(homeController);
-    // homeAnimationFullLargeTimeline.play(0);
+    homeAnimationLarge();
     setTimeout(scrollAnimationBottomOn, 500);
   }
   else {
-    // homeAnimationFullLargeTimeline.pause(0);
-    // homeAnimationTopSmallTimeline.pause(0);
-    // homeAnimationTopSmallTimeline.play(0);
+    homeAnimationMobile();
     setTimeout(scrollAnimationMiddleOn, 500);
     setTimeout(scrollAnimationBottomOn, 500);
   }
@@ -743,44 +570,14 @@ barba.init({
 
         if (window.innerWidth >= 768) {
           homeAnimationLarge();
-          // homeAnimationFullLargeTimeline.play();
           setTimeout(createScrollEffectLarge, 10);
         } else {
           homeAnimationMobile();
-          // homeAnimationTopSmallTimeline.play();
           setTimeout(createScrollEffectMobile, 10);
         }
 
-
-
-
-        
-        // const resizeHomeScreen = () => {
-        //   // destroyScrollEffect();
-
-        //   // homeAnimationFullLarge(0);
-        //   // homeAnimationTopSmall(0);
-
-        //   setTimeout(destroyScrollEffect, 10);
-        //   console.log(homeController);
-        //   if (window.innerWidth >= 768) {
-        //     headerAnimation();
-        //     homeAnimationFullLarge();
-        //     setTimeout(createScrollEffectLarge, 10);
-        //     console.log(homeController);
-        //   } else {
-        //     headerAnimation();
-        //     homeAnimationTopSmall();
-        //     setTimeout(createScrollEffectMobile, 10);
-        //     console.log(homeController);
-        //   }
-        //   resizeScreen();
-        // };
-
-        // window.addEventListener("resize", debounce(resizeHomeScreen, 700));
         window.addEventListener("resize", debounce(resizeHomeScreen, 700));
       },
-
       beforeLeave(data) {
         const destroyScrollEffect = () => {
           scrollAnimationOff(homeController);

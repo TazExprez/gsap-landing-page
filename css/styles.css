@@ -619,11 +619,11 @@ header .large-menu li a {
 
   @keyframes moveShape2 {
     0% {
-      transform: translate3d(0, -150px, 0);
+      transform: translate3d(0, 0, 0);
     }
 
     100% {
-      transform: translate3d(0, -120px, 0);
+      transform: translate3d(0, 40%, 0);
     }
   }
 
@@ -637,11 +637,11 @@ header .large-menu li a {
 
   @keyframes moveShape3 {
     0% {
-      transform: translate3d(0, 130px, 0);
+      transform: translate3d(0, 0, 0);
     }
 
     100% {
-      transform: translate3d(0, 160px, 0);
+      transform: translate3d(0, -40%, 0);
     }
   }
 
