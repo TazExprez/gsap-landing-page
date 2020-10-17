@@ -343,11 +343,9 @@ const delay = (n) => {
 
 let homeController = new ScrollMagic.Controller();
 
-let tlPhotosScroll = gsap.timeline();
+let photosScrollTimeline = gsap.timeline();
 
-let tlServicesScroll = gsap.timeline();
-
-const scrollAnimationMiddleOn = (homeController) => {
+const scrollAnimationMiddleOn = () => {
   // const tlPhotosScroll = new gsap.timeline({
   //   onUpdate: debugPercentage
   // });
@@ -358,7 +356,7 @@ const scrollAnimationMiddleOn = (homeController) => {
 
   // homeAnimationTimeline.progress(0);
 
-  tlPhotosScroll
+  photosScrollTimeline
     .fromTo(
       ".girl",
       {
@@ -415,7 +413,7 @@ const scrollAnimationMiddleOn = (homeController) => {
     offset: 100,
     duration: photosEl.offsetHeight - 100
   })
-    .setTween(tlPhotosScroll)
+    .setTween(photosScrollTimeline)
     .setClassToggle(".shape2, .shape3", "moveShape")
     // .addIndicators()
     .addTo(homeController);
@@ -423,7 +421,9 @@ const scrollAnimationMiddleOn = (homeController) => {
   console.log("Photos scene created!");
 };
 
-const scrollAnimationBottomOn = (homeController) => {
+let servicesScrollTimeline = gsap.timeline();
+
+const scrollAnimationBottomOn = () => {
   // You could have done this like the following commented code, but we want to be able to debug it, so we did it like the code below this, instead.
   // const tlServicesScroll = gsap.timeline();
   // const tlServicesScroll = new gsap.timeline({
@@ -434,7 +434,7 @@ const scrollAnimationBottomOn = (homeController) => {
   //   // console.log(tlServicesScroll.progress());
   // }
 
-  tlServicesScroll
+  servicesScrollTimeline
     .fromTo(
       "#main-services",
       {
@@ -473,7 +473,7 @@ const scrollAnimationBottomOn = (homeController) => {
         ? mainServicesEl.offsetHeight - 100
         : mainServicesEl.offsetHeight - 200
   })
-    .setTween(tlServicesScroll)
+    .setTween(servicesScrollTimeline)
     // .addIndicators()
     .addTo(homeController);
 
@@ -481,12 +481,39 @@ const scrollAnimationBottomOn = (homeController) => {
   console.log(homeController);
 };
 
-const scrollAnimationOff = (homeController) => {
+const scrollAnimationOff = () => {
   homeController.destroy(true);
   homeController = null;
   console.log(homeController);
   console.log("Scene destroyed!");
 };
+
+// Stop Animation And Remove Inline Styles
+
+const killTimeline = () => {
+  const targets = homeAnimationTimeline.getChildren();
+  
+  homeAnimationTimeline.kill();
+
+  
+  for(let i = 0; i < targets.length; i++) {
+    if(targets[i].targets().length) {
+       gsap.set(targets[i].targets(), {clearProps:"all"});
+    }
+  }
+};
+
+// const killTimeline = (timeline) => {
+//   const targets = timeline.getChildren();
+  
+//   timeline.kill();
+  
+//   for(let i = 0; i < targets.length; i++) {
+//     if(targets[i].targets().length) {
+//        gsap.set(targets[i].targets(), {clearProps:"all"});
+//     }
+//   }
+// };
 
 // Screen Resize Functions
 
@@ -501,8 +528,9 @@ const resizeScreen = () => {
 };
 
 const resizeHomeScreen = () => {
-  homeAnimationTimeline.clear();
-  scrollAnimationOff(homeController);
+  killTimeline();
+
+  scrollAnimationOff();
 
   if(window.innerWidth >= 768) {
     homeAnimationLarge();
@@ -556,16 +584,12 @@ barba.init({
         headerAnimation();
 
         const createScrollEffectLarge = () => {
-          scrollAnimationBottomOn(homeController);
+          scrollAnimationBottomOn();
         };
 
         const createScrollEffectMobile = () => {
-          scrollAnimationMiddleOn(homeController);
-          scrollAnimationBottomOn(homeController);
-        };
-
-        const destroyScrollEffect = () => {
-          scrollAnimationOff(homeController);
+          scrollAnimationMiddleOn();
+          scrollAnimationBottomOn();
         };
 
         if (window.innerWidth >= 768) {
@@ -579,10 +603,7 @@ barba.init({
         window.addEventListener("resize", debounce(resizeHomeScreen, 700));
       },
       beforeLeave(data) {
-        const destroyScrollEffect = () => {
-          scrollAnimationOff(homeController);
-        };
-        setTimeout(destroyScrollEffect, 10);
+        scrollAnimationOff();
       }
     },
     {
