@@ -233,12 +233,10 @@ const aboutAnimation = () => {
   timeline.fromTo(
     ".info-section h1",
     {
-      x: 0,
       y: 100,
       opacity: 0
     },
     {
-      x: 0,
       y: 0,
       opacity: 1,
       duration: 1.3
@@ -341,7 +339,13 @@ const delay = (n) => {
 
 // Scroll Animations
 
-let homeController = new ScrollMagic.Controller();
+// let homeController = new ScrollMagic.Controller();
+let homeController = null;
+
+const initHomeController = () => {
+  homeController = new ScrollMagic.Controller();
+  console.log("Controller created!");
+};
 
 let photosScrollTimeline = gsap.timeline();
 
@@ -353,8 +357,6 @@ const scrollAnimationMiddleOn = () => {
   // function debugPercentage() {
   //   // console.log(tlPhotosScroll.progress());
   // }
-
-  // homeAnimationTimeline.progress(0);
 
   photosScrollTimeline
     .fromTo(
@@ -485,25 +487,43 @@ const scrollAnimationOff = () => {
   homeController.destroy(true);
   homeController = null;
   console.log(homeController);
-  console.log("Scene destroyed!");
+  console.log("Controller destroyed!");
 };
 
 // Stop Animation And Remove Inline Styles
 
-const killTimeline = () => {
-  const targets = homeAnimationTimeline.getChildren();
+const killAllTimelines = () => {
+  const homeTargets = homeAnimationTimeline.getChildren();
+  const servicesTargets = servicesScrollTimeline.getChildren();
   
   homeAnimationTimeline.kill();
-
+  servicesScrollTimeline.kill();
   
-  for(let i = 0; i < targets.length; i++) {
-    if(targets[i].targets().length) {
-       gsap.set(targets[i].targets(), {clearProps:"all"});
+  for(let i = 0; i < homeTargets.length; i++) {
+    if(homeTargets[i].targets().length) {
+       gsap.set(homeTargets[i].targets(), {clearProps:"all"});
     }
+  }
+  for(let i = 0; i < servicesTargets.length; i++) {
+    if(servicesTargets[i].targets().length) {
+       gsap.set(servicesTargets[i].targets(), {clearProps:"all"});
+    }
+    console.log("Services Scene Destroyed!");
+  }
+
+  if (photosScrollTimeline.getChildren().length !== 0) {
+    const photosTargets = photosScrollTimeline.getChildren();
+    photosScrollTimeline.kill();
+    for(let i = 0; i < photosTargets.length; i++) {
+      if(photosTargets[i].targets().length) {
+        gsap.set(photosTargets[i].targets(), {clearProps:"all"});
+      }
+    }
+    console.log("Photos Scroll Timeline Destroyed!");
   }
 };
 
-// const killTimeline = (timeline) => {
+// const killAllTimelines = (timeline) => {
 //   const targets = timeline.getChildren();
   
 //   timeline.kill();
@@ -528,9 +548,11 @@ const resizeScreen = () => {
 };
 
 const resizeHomeScreen = () => {
-  killTimeline();
-
   scrollAnimationOff();
+  killAllTimelines();
+  // scrollAnimationOff();
+  delay(500);
+  initHomeController();
 
   if(window.innerWidth >= 768) {
     homeAnimationLarge();
@@ -581,23 +603,17 @@ barba.init({
     {
       namespace: "home",
       afterEnter(data) {
+        // console.log(photosScrollTimeline === true);
         headerAnimation();
-
-        const createScrollEffectLarge = () => {
-          scrollAnimationBottomOn();
-        };
-
-        const createScrollEffectMobile = () => {
-          scrollAnimationMiddleOn();
-          scrollAnimationBottomOn();
-        };
+        initHomeController();
 
         if (window.innerWidth >= 768) {
           homeAnimationLarge();
-          setTimeout(createScrollEffectLarge, 10);
+          setTimeout(scrollAnimationBottomOn, 10);
         } else {
           homeAnimationMobile();
-          setTimeout(createScrollEffectMobile, 10);
+          setTimeout(scrollAnimationMiddleOn, 10);
+          setTimeout(scrollAnimationBottomOn, 10);
         }
 
         window.addEventListener("resize", debounce(resizeHomeScreen, 700));
