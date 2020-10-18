@@ -339,17 +339,73 @@ const delay = (n) => {
 
 // Scroll Animations
 
-// let homeController = new ScrollMagic.Controller();
-let homeController = null;
+// let servicesScrollTimeline = gsap.timeline();
 
-const initHomeController = () => {
-  homeController = new ScrollMagic.Controller();
-  console.log("Controller created!");
+const servicesScrollTimelineOn = () => {
+  // You could have done this like the following commented code, but we want to be able to debug it, so we did it like the code below this, instead.
+  // const tlServicesScroll = gsap.timeline();
+  // const tlServicesScroll = new gsap.timeline({
+  //   onUpdate: debugPercentage
+  // });
+
+  // function debugPercentage() {
+  //   // console.log(tlServicesScroll.progress());
+  // }
+
+  let servicesScrollTimeline = gsap.timeline();
+
+  servicesScrollTimeline
+    .fromTo(
+      "#main-services",
+      {
+        x: "100%"
+      },
+      {
+        x: 0,
+        duration: 2
+      }
+    )
+    .staggerFromTo(
+      "#main-services .services .service",
+      2,
+      {
+        x: window.innerWidth >= 768 ? 0 : "300px",
+        y: window.innerWidth >= 768 ? "300px" : 0,
+        opacity: 0
+      },
+      {
+        x: 0,
+        y: 0,
+        opacity: 1
+      },
+      0.8,
+      ">10"
+    );
+
+    return servicesScrollTimeline;
+
+  // let mainServicesEl = document.querySelector("#main-services");
+
+  // let serviceScene = new ScrollMagic.Scene({
+  //   triggerElement: "#main-services",
+  //   triggerHook: 1,
+  //   offset: 100,
+  //   duration:
+  //     window.innerWidth >= 768
+  //       ? mainServicesEl.offsetHeight - 100
+  //       : mainServicesEl.offsetHeight - 200
+  // })
+  //   .setTween(servicesScrollTimeline)
+  //   // .addIndicators()
+  //   .addTo(homeController);
+
+  console.log("Service scene created!");
+  console.log(homeController);
 };
 
-let photosScrollTimeline = gsap.timeline();
+// let photosScrollTimeline = gsap.timeline();
 
-const scrollAnimationMiddleOn = () => {
+const photosScrollTimelineOn = () => {
   // const tlPhotosScroll = new gsap.timeline({
   //   onUpdate: debugPercentage
   // });
@@ -357,6 +413,8 @@ const scrollAnimationMiddleOn = () => {
   // function debugPercentage() {
   //   // console.log(tlPhotosScroll.progress());
   // }
+
+  let photosScrollTimeline = gsap.timeline();
 
   photosScrollTimeline
     .fromTo(
@@ -407,62 +465,30 @@ const scrollAnimationMiddleOn = () => {
       }
     );
 
-  let photosEl = document.querySelector(".photos");
+      return photosScrollTimeline;
 
-  let photosScene = new ScrollMagic.Scene({
-    triggerElement: "#home .photos",
-    triggerHook: 1,
-    offset: 100,
-    duration: photosEl.offsetHeight - 100
-  })
-    .setTween(photosScrollTimeline)
-    .setClassToggle(".shape2, .shape3", "moveShape")
-    // .addIndicators()
-    .addTo(homeController);
+  // let photosEl = document.querySelector(".photos");
+
+  // let photosScene = new ScrollMagic.Scene({
+  //   triggerElement: "#home .photos",
+  //   triggerHook: 1,
+  //   offset: 100,
+  //   duration: photosEl.offsetHeight - 100
+  // })
+  //   .setTween(photosScrollTimeline)
+  //   .setClassToggle(".shape2, .shape3", "moveShape")
+  //   // .addIndicators()
+  //   .addTo(homeController);
 
   console.log("Photos scene created!");
 };
 
-let servicesScrollTimeline = gsap.timeline();
+// let homeController = new ScrollMagic.Controller();
+let homeController = null;
 
-const scrollAnimationBottomOn = () => {
-  // You could have done this like the following commented code, but we want to be able to debug it, so we did it like the code below this, instead.
-  // const tlServicesScroll = gsap.timeline();
-  // const tlServicesScroll = new gsap.timeline({
-  //   onUpdate: debugPercentage
-  // });
-
-  // function debugPercentage() {
-  //   // console.log(tlServicesScroll.progress());
-  // }
-
-  servicesScrollTimeline
-    .fromTo(
-      "#main-services",
-      {
-        x: "100%"
-      },
-      {
-        x: 0,
-        duration: 2
-      }
-    )
-    .staggerFromTo(
-      "#main-services .services .service",
-      2,
-      {
-        x: window.innerWidth >= 768 ? 0 : "300px",
-        y: window.innerWidth >= 768 ? "300px" : 0,
-        opacity: 0
-      },
-      {
-        x: 0,
-        y: 0,
-        opacity: 1
-      },
-      0.8,
-      ">10"
-    );
+const initHomeController = () => {
+  homeController = new ScrollMagic.Controller();
+  console.log("Controller created!");
 
   let mainServicesEl = document.querySelector("#main-services");
 
@@ -475,15 +501,27 @@ const scrollAnimationBottomOn = () => {
         ? mainServicesEl.offsetHeight - 100
         : mainServicesEl.offsetHeight - 200
   })
-    .setTween(servicesScrollTimeline)
+    .setTween(servicesScrollTimelineOn())
     // .addIndicators()
     .addTo(homeController);
 
-  console.log("Service scene created!");
-  console.log(homeController);
+  if (window.innerWidth <= 767) {
+    let photosEl = document.querySelector(".photos");
+
+    let photosScene = new ScrollMagic.Scene({
+      triggerElement: "#home .photos",
+      triggerHook: 1,
+      offset: 100,
+      duration: photosEl.offsetHeight - 100
+    })
+      .setTween(photosScrollTimelineOn())
+      .setClassToggle(".shape2, .shape3", "moveShape")
+      // .addIndicators()
+      .addTo(homeController);
+  }
 };
 
-const scrollAnimationOff = () => {
+const allScrollAnimationsOff = () => {
   homeController.destroy(true);
   homeController = null;
   console.log(homeController);
@@ -494,10 +532,10 @@ const scrollAnimationOff = () => {
 
 const killAllTimelines = () => {
   const homeTargets = homeAnimationTimeline.getChildren();
-  const servicesTargets = servicesScrollTimeline.getChildren();
+  const servicesTargets = servicesScrollTimelineOn().getChildren();
   
   homeAnimationTimeline.kill();
-  servicesScrollTimeline.kill();
+  servicesScrollTimelineOn().kill();
   
   for(let i = 0; i < homeTargets.length; i++) {
     if(homeTargets[i].targets().length) {
@@ -511,9 +549,9 @@ const killAllTimelines = () => {
     console.log("Services Scene Destroyed!");
   }
 
-  if (photosScrollTimeline.getChildren().length !== 0) {
-    const photosTargets = photosScrollTimeline.getChildren();
-    photosScrollTimeline.kill();
+  if (photosScrollTimelineOn().getChildren().length !== 0) {
+    const photosTargets = photosScrollTimelineOn().getChildren();
+    photosScrollTimelineOn().kill();
     for(let i = 0; i < photosTargets.length; i++) {
       if(photosTargets[i].targets().length) {
         gsap.set(photosTargets[i].targets(), {clearProps:"all"});
@@ -548,22 +586,24 @@ const resizeScreen = () => {
 };
 
 const resizeHomeScreen = () => {
-  scrollAnimationOff();
+  // allScrollAnimationsOff();
   killAllTimelines();
-  // scrollAnimationOff();
+  allScrollAnimationsOff();
   delay(500);
-  initHomeController();
+  // initHomeController();
 
   if(window.innerWidth >= 768) {
     homeAnimationLarge();
-    setTimeout(scrollAnimationBottomOn, 500);
+    setTimeout(servicesScrollTimelineOn, 500);
   }
   else {
     homeAnimationMobile();
-    setTimeout(scrollAnimationMiddleOn, 500);
-    setTimeout(scrollAnimationBottomOn, 500);
+    setTimeout(photosScrollTimelineOn, 500);
+    setTimeout(servicesScrollTimelineOn, 500);
   }
   
+  initHomeController();
+
   resizeScreen();
 };
 
@@ -605,21 +645,23 @@ barba.init({
       afterEnter(data) {
         // console.log(photosScrollTimeline === true);
         headerAnimation();
-        initHomeController();
+        // initHomeController();
 
         if (window.innerWidth >= 768) {
           homeAnimationLarge();
-          setTimeout(scrollAnimationBottomOn, 10);
+          setTimeout(servicesScrollTimelineOn, 10);
         } else {
           homeAnimationMobile();
-          setTimeout(scrollAnimationMiddleOn, 10);
-          setTimeout(scrollAnimationBottomOn, 10);
+          setTimeout(photosScrollTimelineOn, 10);
+          setTimeout(servicesScrollTimelineOn, 10);
         }
+
+        initHomeController();
 
         window.addEventListener("resize", debounce(resizeHomeScreen, 700));
       },
       beforeLeave(data) {
-        scrollAnimationOff();
+        allScrollAnimationsOff();
       }
     },
     {
