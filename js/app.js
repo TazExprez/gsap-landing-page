@@ -7,7 +7,7 @@ const clickedMobileMenuBtn = () => {
 };
 
 const closeMobileMenu = () => {
-  mobileMenuBtn.classList.toggle("active");
+  mobileMenuBtn.classList.remove("active");
   mobileMenu.classList.remove("active");
 };
 
@@ -601,6 +601,7 @@ barba.init({
     {
       namespace: "home",
       afterEnter(data) {
+        closeMobileMenu();
         headerAnimation();
 
         if (window.innerWidth >= 768) {
@@ -622,6 +623,7 @@ barba.init({
     {
       namespace: "about",
       afterEnter(data) {
+        closeMobileMenu();
         headerAnimation();
         aboutAnimation();
         window.addEventListener("resize", debounce(resizeScreen, 700));
@@ -630,6 +632,7 @@ barba.init({
     {
       namespace: "gallery",
       afterEnter(data) {
+        closeMobileMenu();
         headerAnimation();
         galleryAnimation();
         window.addEventListener("resize", debounce(resizeScreen, 700));
