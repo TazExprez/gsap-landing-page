@@ -627,7 +627,6 @@ header .large-menu li a {
     justify-content: center;
     align-items: center;
     width: 100%;
-    max-width: 668px;
     height: 100vh;
   }
 
@@ -754,6 +753,7 @@ header .large-menu li a {
     top: 0;
     left: 0;
     width: 100%;
+    max-width: 668px;
     height: 300px;
     background: rgba(0, 0, 0, 0.5);
     transition: all 0.4s ease-in-out;
@@ -766,6 +766,7 @@ header .large-menu li a {
 
   #gallery .white-bg img {
     width: 100%;
+    max-width: 668px;
     height: 300px;
     object-fit: cover;
     object-position: center;
