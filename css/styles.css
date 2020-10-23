@@ -479,25 +479,25 @@ header .large-menu li a {
   /* Scroll Sections */
 
   #main-services h2 {
-    font-size: 2.5rem;
-    margin-bottom: 130px;
+    font-size: 2.3rem;
+    margin-bottom: 120px;
   }
 
   #main-services .services {
-    min-width: 900px;
+    min-width: 700px;
   }
 
   #main-services .services h3 {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 
   #main-services .services .service .icon-circle {
-    height: 80px;
-    width: 80px;
+    height: 70px;
+    width: 70px;
   }
 
   #main-services .services .service .icon-circle .fa-phone {
-    font-size: 1.8rem;
+    font-size: 1.3rem;
   }
 }
 
@@ -526,11 +526,46 @@ header .large-menu li a {
     text-decoration: none;
   }
 
-  .mobile-header .mobile-menu-btn .fas {
-    padding: 15px;
-    font-size: 1.5rem;
-    color: white;
+  .mobile-header .mobile-menu-btn {
+    position: relative;
+    width: 25px;
+    height: 20px;
+    transform: rotate(0deg);
+    transition: 0.5s ease-in-out;
     cursor: pointer;
+    margin: 15px;
+  }
+  .mobile-header .mobile-menu-btn span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: 0.25s ease-in-out;
+  }
+  .mobile-header .mobile-menu-btn span:nth-child(1) {
+    top: 0;
+  }
+  .mobile-header .mobile-menu-btn span:nth-child(2), .mobile-header .mobile-menu-btn span:nth-child(3) {
+    top: 8px;
+  }
+  .mobile-header .mobile-menu-btn span:nth-child(4) {
+    top: 16px;
+  }
+  .mobile-header .mobile-menu-btn.active span:nth-child(1), .mobile-header .mobile-menu-btn.active span:nth-child(4) {
+    top: 8px;
+    width: 0%;
+    left: 50%;
+  }
+  .mobile-header .mobile-menu-btn.active span:nth-child(2) {
+    transform: rotate(45deg);
+  }
+  .mobile-header .mobile-menu-btn.active span:nth-child(3) {
+    transform: rotate(-45deg);
   }
 
   #home {

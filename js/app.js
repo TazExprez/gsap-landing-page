@@ -2,10 +2,12 @@ let mobileMenuBtn = document.querySelector(".mobile-menu-btn");
 let mobileMenu = document.querySelector(".mobile-menu");
 
 const clickedMobileMenuBtn = () => {
+  mobileMenuBtn.classList.toggle("active");
   mobileMenu.classList.toggle("active");
 };
 
 const closeMobileMenu = () => {
+  mobileMenuBtn.classList.toggle("active");
   mobileMenu.classList.remove("active");
 };
 
@@ -124,7 +126,7 @@ const homeAnimationLarge = () => {
     },
     {
       y: "-40%",
-      // repeat: -1,
+      repeat: -1,
       duration: 1.5,
       ease: "sine.inOut",
       yoyo: true
@@ -149,7 +151,7 @@ const homeAnimationLarge = () => {
     },
     {
       y: "40%",
-      // repeat: -1,
+      repeat: -1,
       duration: 1.5,
       ease: "sine.inOut",
       yoyo: true
@@ -339,8 +341,6 @@ const delay = (n) => {
 
 // Scroll Animations
 
-// let servicesScrollTimeline = gsap.timeline();
-
 const servicesScrollTimelineOn = () => {
   // You could have done this like the following commented code, but we want to be able to debug it, so we did it like the code below this, instead.
   // const tlServicesScroll = gsap.timeline();
@@ -352,9 +352,8 @@ const servicesScrollTimelineOn = () => {
   //   // console.log(tlServicesScroll.progress());
   // }
 
-  let servicesScrollTimeline = gsap.timeline();
-
-  servicesScrollTimeline
+  let timeline = gsap.timeline();
+  timeline
     .fromTo(
       "#main-services",
       {
@@ -382,41 +381,16 @@ const servicesScrollTimelineOn = () => {
       ">10"
     );
 
-    return servicesScrollTimeline;
-
-  // let mainServicesEl = document.querySelector("#main-services");
-
-  // let serviceScene = new ScrollMagic.Scene({
-  //   triggerElement: "#main-services",
-  //   triggerHook: 1,
-  //   offset: 100,
-  //   duration:
-  //     window.innerWidth >= 768
-  //       ? mainServicesEl.offsetHeight - 100
-  //       : mainServicesEl.offsetHeight - 200
-  // })
-  //   .setTween(servicesScrollTimeline)
-  //   // .addIndicators()
-  //   .addTo(homeController);
+  return timeline;
 
   console.log("Service scene created!");
   console.log(homeController);
 };
 
-// let photosScrollTimeline = gsap.timeline();
-
 const photosScrollTimelineOn = () => {
-  // const tlPhotosScroll = new gsap.timeline({
-  //   onUpdate: debugPercentage
-  // });
+  let timeline = gsap.timeline();
 
-  // function debugPercentage() {
-  //   // console.log(tlPhotosScroll.progress());
-  // }
-
-  let photosScrollTimeline = gsap.timeline();
-
-  photosScrollTimeline
+  timeline
     .fromTo(
       ".girl",
       {
@@ -462,28 +436,15 @@ const photosScrollTimelineOn = () => {
       },
       {
         opacity: 0.6
-      }
+      },
+      ">-0.5" // Added to try to fix a bug.
     );
 
-      return photosScrollTimeline;
-
-  // let photosEl = document.querySelector(".photos");
-
-  // let photosScene = new ScrollMagic.Scene({
-  //   triggerElement: "#home .photos",
-  //   triggerHook: 1,
-  //   offset: 100,
-  //   duration: photosEl.offsetHeight - 100
-  // })
-  //   .setTween(photosScrollTimeline)
-  //   .setClassToggle(".shape2, .shape3", "moveShape")
-  //   // .addIndicators()
-  //   .addTo(homeController);
+  return timeline;
 
   console.log("Photos scene created!");
 };
 
-// let homeController = new ScrollMagic.Controller();
 let homeController = null;
 
 const initHomeController = () => {
@@ -513,6 +474,7 @@ const initHomeController = () => {
       triggerHook: 1,
       offset: 100,
       duration: photosEl.offsetHeight - 100
+      // duration: photosEl.offsetHeight + 200
     })
       .setTween(photosScrollTimelineOn())
       .setClassToggle(".shape2, .shape3", "moveShape")
@@ -586,24 +548,20 @@ const resizeScreen = () => {
 };
 
 const resizeHomeScreen = () => {
-  // allScrollAnimationsOff();
   killAllTimelines();
   allScrollAnimationsOff();
-  delay(500);
-  // initHomeController();
 
   if(window.innerWidth >= 768) {
     homeAnimationLarge();
-    setTimeout(servicesScrollTimelineOn, 500);
+    servicesScrollTimelineOn();
   }
   else {
     homeAnimationMobile();
-    setTimeout(photosScrollTimelineOn, 500);
-    setTimeout(servicesScrollTimelineOn, 500);
+    photosScrollTimelineOn();
+    servicesScrollTimelineOn();
   }
   
   initHomeController();
-
   resizeScreen();
 };
 
@@ -643,21 +601,18 @@ barba.init({
     {
       namespace: "home",
       afterEnter(data) {
-        // console.log(photosScrollTimeline === true);
         headerAnimation();
-        // initHomeController();
 
         if (window.innerWidth >= 768) {
           homeAnimationLarge();
-          setTimeout(servicesScrollTimelineOn, 10);
+          servicesScrollTimelineOn();
         } else {
           homeAnimationMobile();
-          setTimeout(photosScrollTimelineOn, 10);
-          setTimeout(servicesScrollTimelineOn, 10);
+          photosScrollTimelineOn();
+          servicesScrollTimelineOn();
         }
 
         initHomeController();
-
         window.addEventListener("resize", debounce(resizeHomeScreen, 700));
       },
       beforeLeave(data) {
