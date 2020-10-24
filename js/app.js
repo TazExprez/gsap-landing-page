@@ -472,9 +472,7 @@ const initHomeController = () => {
     let photosScene = new ScrollMagic.Scene({
       triggerElement: "#home .photos",
       triggerHook: 1,
-      offset: 100,
-      duration: photosEl.offsetHeight - 100
-      // duration: photosEl.offsetHeight + 200
+      duration: photosEl.offsetHeight
     })
       .setTween(photosScrollTimelineOn())
       .setClassToggle(".shape2, .shape3", "moveShape")
